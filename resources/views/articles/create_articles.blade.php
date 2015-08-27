@@ -54,7 +54,8 @@
 		                <td>{{$article->details}}</td>
 		                <td>{{$article->price}}</td>
 		                <td>
-		                	<a class="btn btn-info" href="{{ route('editar_descripcion', [$article->id]) }}">Editar</a>
+		                	<a class="btn btn-info" href="{{ route('editar_articulo', [$article->id]) }}">Editar</a>
+		                	<a class="btn btn-success" href="{{ route('codigo_de_barra', [$article->id]) }}">Bar Code</a>
 		                	<a class="btn btn-danger">Borrar</a>
 		                </td>
 		              </tr>
@@ -66,7 +67,7 @@
     </div>
 </div>
 
-{!! Form::open(array('route' => ['borra_descripcion',':DESCRIPTION_ID'],'id'=>'form_delete','method'=>'DELETE')) !!}
+{!! Form::open(array('route' => ['borra_articulo',':DESCRIPTION_ID'],'id'=>'form_delete','method'=>'DELETE')) !!}
 {!! Form::close() !!}
 
 @endsection

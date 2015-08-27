@@ -14,4 +14,9 @@ class Article extends Model {
 		return $this->belongsTo('App\ArticleDescription');
 	}
 
+	public function barrcodes()
+	{
+		return $this->hasMany('App\Barrcode');
+	}
+
 }

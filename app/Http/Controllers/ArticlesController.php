@@ -156,4 +156,60 @@ class ArticlesController extends Controller {
 		return redirect()->back()->withInput()->withErrors($validation->messages());
 	}
 
+	public function delete_article($id)
+	{
+		if(Request::ajax())
+		{
+			$item = Article::find($id);
+
+			$item->delete();
+
+			$message  = "Articulo id: '".$item->id."' eliminada";
+
+			return Response::json(array('message' => $message,'id' => $id));
+		}
+
+		return redirect()->back();
+	}
+
+	public function edit_article($id)
+	{
+		$article = Article::find($id);
+
+		$descriptions = ArticleDescription::orderBy('name')->get()->lists('name','id');
+
+		return view('articles.edit_article',compact('article','descriptions'));
+	}
+
+	public function update_article($id)
+	{
+		$data = Request::only('details','price','article_description_id');
+
+		$rules = [
+			'details' => 'required',
+			'price' => 'required',
+			'article_description_id' => 'required'
+		];
+
+		$validation = \Validator::make($data,$rules);
+
+
+		if($validation->passes())
+		{
+			$item = Article::find($id);
+
+			$item->details = $data['details'];
+
+			$item->article_description_id = $data['article_description_id'];
+
+			$item->price = $data['price'];
+
+			$item->save();
+
+			//return Redirect::back()->withInput()->withErrors($validation->messages());
+			return redirect()->route('crear_articulos');
+		}
+		return redirect()->back()->withInput()->withErrors($validation->messages());
+	}
+
 }
