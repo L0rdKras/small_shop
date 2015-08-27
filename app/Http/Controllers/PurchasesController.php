@@ -70,4 +70,38 @@ class PurchasesController extends Controller {
 		return redirect()->back()->withInput()->withErrors($validation->messages());
 	}
 
+	public function edit_supplier($id)
+	{
+		$supplier = Supplier::find($id);
+
+		return view('purchases.edit_supplier',compact('supplier'));
+	}
+
+	public function update_supplier($id)
+	{
+		$data = Request::only('rut','name');
+
+		$rules = [
+			'rut' => 'required',
+			'name' => 'required'
+		];
+
+		$validation = \Validator::make($data,$rules);
+
+		if($validation->passes())
+		{
+			$item = Supplier::find($id);
+
+			$item->name = $data['name'];
+
+			$item->rut = $data['rut'];
+
+			$item->save();
+
+			return redirect()->route('proveedores');
+		}
+
+		return redirect()->back()->withInput();
+	}
+
 }

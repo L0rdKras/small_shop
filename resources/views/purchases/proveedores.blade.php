@@ -46,7 +46,7 @@
 		                <td>{{$supplier->rut}}</td>
 		                <td>{{$supplier->name}}</td>
 		                <td>
-		                	<a class="btn btn-info" href="{{ route('editar_descripcion', [$supplier->id]) }}">Editar</a>		                	
+		                	<a class="btn btn-info" href="{{ route('editar_proveedor', [$supplier->id]) }}">Editar</a>		                	
 		                </td>
 		              </tr>
 		              @endforeach
