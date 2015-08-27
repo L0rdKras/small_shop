@@ -3,8 +3,8 @@
 @section('content')
 <div class="container theme-showcase" role="main">
 	<div class="jumbotron">
-        <h1>Articulos</h1>
-        <p>Defina los tipos de articulos que vendera, y cree su propio inventario personalizado</p>
+        <h1>Compras</h1>
+        <p>Ingrese las compras de mercaderia y mantenga actualizado su stock</p>
     </div>
 
     <div class="page-hader">
@@ -14,8 +14,8 @@
 	            <a href="#" class="list-group-item active">
 	              Opciones
 	            </a>
-	            <a href="{{route('descripciones')}}" class="list-group-item">Definir descripciones de articulos</a>
-	            <a href="{{route('crear_articulos')}}" class="list-group-item">Crear articulos de la tienda</a>
+	            <a href="{{route('proveedores')}}" class="list-group-item">Registro Proveedores</a>
+	            <a href="{{route('crear_articulos')}}" class="list-group-item">Registro Compra</a>
 	            	            
 	          </div>
 	        </div><!-- /.col-sm-4 -->

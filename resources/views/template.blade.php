@@ -36,7 +36,7 @@
           <ul class="nav navbar-nav">
             <li><a href="/">Inicio</a></li>
             <li><a href="{{route('articulos')}}">Articulos</a></li>
-            <li><a href="#contact">Compras</a></li>
+            <li><a href="{{route('compras')}}">Compras</a></li>
             <li><a href="#contact">Ventas</a></li>
             <!--<li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>

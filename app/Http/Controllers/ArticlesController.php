@@ -2,6 +2,7 @@
 
 use App\ArticleDescription;
 use App\Article;
+use App\Barrcode;
 
 use Request;
 
@@ -210,6 +211,54 @@ class ArticlesController extends Controller {
 			return redirect()->route('crear_articulos');
 		}
 		return redirect()->back()->withInput()->withErrors($validation->messages());
+	}
+
+	public function barcode_article($id)
+	{
+		$article = Article::find($id);
+
+		return view('articles.barcodes',compact('article'));
+	}
+
+	public function save_barcode()
+	{
+		$data = Request::only('code','article_id');
+
+		$rules = [
+			'code' => 'required',
+			'article_id' => 'required'
+		];
+
+		$validation = \Validator::make($data,$rules);
+
+
+		if($validation->passes())
+		{
+			$item = new Barrcode($data);
+
+			$item->save();
+
+			//return Redirect::back()->withInput()->withErrors($validation->messages());
+			return redirect()->back();
+		}
+		return redirect()->back()->withInput()->withErrors($validation->messages());
+	
+	}
+
+	public function delete_barcode($id)
+	{
+		if(Request::ajax())
+		{
+			$item = Barrcode::find($id);
+
+			$item->delete();
+
+			$message  = "Codigo de Barra id: '".$item->id."' eliminado";
+
+			return Response::json(array('message' => $message,'id' => $id));
+		}
+
+		return redirect()->back();
 	}
 
 }

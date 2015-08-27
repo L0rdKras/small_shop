@@ -47,6 +47,20 @@ Route::patch('/articulos/editar/articulo/{id}', ['as'=>'actualiza_articulo', 'us
 
 Route::get('/articulos/codigo/de/barra/articulo/{id}', ['as'=>'codigo_de_barra', 'uses' => 'ArticlesController@barcode_article']);
 
+Route::post('/articulos/guarda/codigo/de/barra', ['as'=>'guarda_codigo', 'uses' => 'ArticlesController@save_barcode']);
+
+Route::delete('/articulos/borra/codigo/de/barra/{id}', ['as'=>'borra_codigo', 'uses' => 'ArticlesController@delete_barcode']);
+
+/*************COMPRAS***************/
+
+Route::get('/compras', ['as'=>'compras', 'uses' => 'PurchasesController@index']);
+
+/*****************proveedores************************/
+
+Route::get('/compras/proveedores', ['as'=>'proveedores', 'uses' => 'PurchasesController@suppliers']);
+
+Route::post('/compras/guarda/proveedor', ['as'=>'salva_proveedor', 'uses' => 'PurchasesController@save_supplier']);
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
