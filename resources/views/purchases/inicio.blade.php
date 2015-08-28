@@ -15,7 +15,7 @@
 	              Opciones
 	            </a>
 	            <a href="{{route('proveedores')}}" class="list-group-item">Registro Proveedores</a>
-	            <a href="{{route('crear_articulos')}}" class="list-group-item">Registro Compra</a>
+	            <a href="{{route('registro_compras')}}" class="list-group-item">Registro Compra</a>
 	            	            
 	          </div>
 	        </div><!-- /.col-sm-4 -->

@@ -2,6 +2,10 @@
 
 use App\Supplier;
 
+use App\Article;
+
+use App\Barrcode;
+
 use Request;
 
 use Response;
@@ -102,6 +106,65 @@ class PurchasesController extends Controller {
 		}
 
 		return redirect()->back()->withInput();
+	}
+
+	public function purchase_register()
+	{
+		return view('purchases.register');
+	}
+
+	public function load_code($code)
+	{
+		$cont = Barrcode::where('code','=',$code)->count();
+
+		if($cont>0)
+		{
+			$item = Barrcode::where('code','=',$code)->first();
+			
+			$info = array(
+				'message' => 'encontrado',
+				'description_article' => $item->article->article_description->name,
+				'details' => $item->article->details,
+				'stock' => $item->article->stock,
+				'id' => $item->id,
+				'article_id' => $item->article_id
+			);
+
+			return Response::json($info);
+		}
+
+		return Response::json(array('message' => "No se encontro el codigo"));
+	}
+
+	public function save_purchase($cant,$id)
+	{
+		//$data = Request::only('name');
+
+		$data = array(
+			'quantity' => $cant,
+			'article_id' => $id
+		);
+
+		$rules = [
+			'quantity' => 'required',
+			'article_id' => 'required'
+		];
+
+		return $data;
+
+		$validation = \Validator::make($data,$rules);
+
+		if($validation->passes())
+		{
+			return $data;
+			$item = new ArticleDescription($data);
+
+			$item->save();
+
+			//return Redirect::back()->withInput()->withErrors($validation->messages());
+			return redirect()->back();
+		}
+		return redirect()->back()->withInput()->withErrors($validation->messages());
 	}
 
 }

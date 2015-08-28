@@ -65,6 +65,16 @@ Route::get('/compras/editar/proveedor/{id}', ['as'=>'editar_proveedor', 'uses' =
 
 Route::patch('/compras/editar/proveedor/{id}', ['as'=>'actualiza_proveedor', 'uses' => 'PurchasesController@update_supplier']);
 
+/**************ingreso de compras**********************/
+
+Route::get('/compras/registro', ['as'=>'registro_compras', 'uses' => 'PurchasesController@purchase_register']);
+
+Route::get('/compras/registro/load/code/{code}', ['as'=>'load_code', 'uses' => 'PurchasesController@load_code']);
+
+Route::get('/compras/registro/insert/article/{code}/{id}', ['as'=>'insert_article', 'uses' => 'PurchasesController@load_code']);
+
+Route::post('/compras/registro/save/article/{cant}/{id}', ['as'=>'save_purchase', 'uses' => 'PurchasesController@save_purchase']);
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
