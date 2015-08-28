@@ -1,6 +1,24 @@
 @extends('template')
 
 @section('content')
+<div class="modal fade" id="id_modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Seleccion de Proveedores</h4>
+      </div>
+      <div class="modal-body" id="ver_proveedores">
+        <p>Tabla proveedores&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+
 <div class="container theme-showcase" role="main">
 	<div class="page-hader">
     	<div class="row">
@@ -10,7 +28,9 @@
 		          <h3 class="panel-title">Proveedor</h3>
 		        </div>
 		        <div class="panel-body">
-		          Datos Proveedor
+		          <button id="btn_busca_prov" type="button" class="btn btn-lg btn-success">
+		          	Seleccionar Proveedor
+		          </button>
 		        </div>
 		      </div>
 		      <div id="panel_articulo" class="panel panel-default">
@@ -70,6 +90,8 @@
 {!! Form::close() !!}
 {!! Form::open(array('route' => ['save_purchase',':QUANTITY',':ID_ARTICLE'],'id'=>'form_purchase','method'=>'POST')) !!}
 {!! Form::close() !!}
+{!! Form::open(array('route' => ['show_list_suppliers'],'id'=>'form_suppliers_list','method'=>'GET')) !!}
+{!! Form::close() !!}
 
 <template id="template_datos_articulo">
 	<div class="panel-body">
@@ -110,179 +132,6 @@
 
 @section('scripts')
 
-<script>
-	var id_global = 0;
-	$(document).ready(function() {
-    
-	    function_delete_description();
-	    function_load_article();
-	    function_guarda_compra();
-	});
-
-	function function_delete_description(id)
-	{
-		$("#"+id+" .btn-danger").on("click",function(e){
-			e.preventDefault();
-
-			/*var fila = $(this).parents("tr");
-
-			var id_articulo = fila.data("id");
-
-			var cantidad = fila.data("cantidad");
-
-			alert(id_articulo+" "+cantidad);*/
-
-			var fila = $(this).parents("tr");
-
-			fila.fadeOut("slow",function(){
-				fila.remove();
-				if($('#detalle_compra > tr').length == 0){
-					//oculta boton compra
-					$("#save_area").fadeOut();
-
-				}
-			});
-
-			/*var form = $("#form_delete");
-
-			var url = form.attr('action').replace(':DESCRIPTION_ID',id_borrar);
-
-			var data = form.serialize();
-
-			$.post(url,data,function(result){
-				fila.fadeOut("slow");
-				alert(result.message);
-			}).fail(function(){
-				alert("Ocurrio un error al intentar ejecutar la funcion");
-			});*/
-		});
-	}
-
-	function function_load_article()
-	{
-		$("#btn_load_code").on('click',function(e){
-			e.preventDefault();
-			var bar_code = $("#bar_code").val();
-			var form = $("#form_load");
-
-			var url = form.attr('action').replace(':CODE',bar_code);
-
-			//var data = form.serialize();
-			$.get(url,function(result){
-				if(result.message == "encontrado")
-				{
-					$("#datos_articulo").html($("#template_datos_articulo").html()).promise().done(function(){
-						$(this).fadeIn();
-						$("#descripcion_cargada").val(result.description_article);
-						$("#detalle_cargado").val(result.details);
-						$("#stock_cargado").val(result.stock);
-						add_detalle(bar_code,result);						
-					});
-				}else{
-					alert(result.message);
-					$("#datos_articulo").fadeOut("slow",function(){
-						$(this).html("");
-					});
-				}
-			}).fail(function(){
-				alert("Ocurrio un error al intentar cargar la informacion");
-			});
-		});
-	}
-
-	function add_detalle(bar_code,datos)
-	{
-		$("#btn_load_article").on("click",function(e){
-			e.preventDefault();
-			var cantidad = $("#cantidad").val();
-
-			/*var form = $("#form_insert");
-
-			var url = form.attr('action').replace(':CODE',bar_code);
-
-			url = url.replace(':ID_ARTICLE',id);
-
-			var data = form.serialize();
-
-			alert(url);*/
-			if(cantidad>0)
-			{
-				
-				var fila = $("#fila_tabla").html();
-
-				fila = fila.replace("C.I.A",datos.article_id);
-				fila = fila.replace("CodigoBarra",bar_code);
-				fila = fila.replace("Descripcion",datos.description_article);
-				fila = fila.replace("Detalle",datos.details);
-				fila = fila.replace("Cantidad",cantidad);
-				fila = fila.replace(":id_articulo",datos.article_id);
-				fila = fila.replace(":cantidad_compra",cantidad);
-				fila = fila.replace(":id_fila",id_global);
-
-				id_global++;
-
-				$("#detalle_compra").append(fila).promise().done(function(){
-					$("#datos_articulo").fadeOut("slow",function(){
-						$(this).html("");
-						$("#bar_code").val("");
-						$("#bar_code").focus();
-						//if($('#detalle_compra > tr').length-1 == 0){
-						var id_aux = id_global-1;
-							
-						function_delete_description(id_aux);
-						//}
-						if($('#detalle_compra > tr').length == 1){
-							muestra_boton_compra();
-						}
-					});
-				});
-			}
-
-		});
-
-	}
-	function muestra_boton_compra()
-	{
-		$("#save_area").fadeIn();
-	}
-
-	function function_guarda_compra()
-	{
-		$("#btn_save_purchase").on("click",function(e){
-			e.preventDefault();
-
-			var arreglo = [];
-
-			$('#detalle_compra > tr').each(function(index){
-				//
-				var cantidad = $(this).data("cantidad");
-				var articulo = $(this).data("id");
-				
-				//guarda_detalle(cantidad,articulo);
-				arreglo.push({'cantidad':cantidad,'articulo':articulo});
-
-			});
-			var jsonString = JSON.stringify(arreglo);
-
-			console.log(jsonString);
-		});
-	}
-
-	function guarda_detalle(cantidad,articulo)
-	{
-		var form = $("#form_purchase");
-
-		var url = form.attr('action').replace(':QUANTITY',cantidad);
-
-		url = url.replace(':ID_ARTICLE',articulo);
-
-		var data = form.serialize();
-
-		$.post(url,data,function(result){
-			console.log(result);
-		});
-	}
-
-</script>
+<script src="{{ asset('js/purchase_register.js')}}"></script>
 
 @endsection

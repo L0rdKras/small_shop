@@ -43,6 +43,14 @@ class PurchasesController extends Controller {
 		return view('purchases.inicio');
 	}
 
+	public function suppliers_list()
+	{
+		$suppliers = Supplier::orderBy('name')->get();
+
+		//crear tabla
+		return view('purchases.resource.suppliers_list',compact('suppliers'));
+	}
+
 	public function suppliers()
 	{
 		$suppliers = Supplier::orderBy('name')->get();
