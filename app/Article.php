@@ -19,4 +19,23 @@ class Article extends Model {
 		return $this->hasMany('App\Barrcode');
 	}
 
+	public function purchasedetails()
+	{
+		return $this->hasMany('App\PurchaseDetail');
+	}
+
+	public function modificar_stock($operator,$quantity)
+	{
+		if($operator == "+")
+		{
+			$this->stock += $quantity;
+			return true;
+		}elseif ($operator == "-") {
+			$this->stock -= $quantity;
+			return true;
+		}
+
+		return false;
+	}
+
 }

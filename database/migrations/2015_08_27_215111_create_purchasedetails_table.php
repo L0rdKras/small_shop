@@ -17,9 +17,11 @@ class CreatePurchasedetailsTable extends Migration {
 			$table->increments('id');
 			$table->integer('quantity');
 			$table->integer('article_id')->unsigned();
+			$table->integer('purchase_id')->unsigned();
 			$table->timestamps();
 
 			$table->foreign('article_id')->references('id')->on('articles');
+			$table->foreign('purchase_id')->references('id')->on('purchases');
 		});
 	}
 

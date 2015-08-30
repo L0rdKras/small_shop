@@ -140,6 +140,10 @@ function function_guarda_compra()
 	$("#btn_save_purchase").on("click",function(e){
 		e.preventDefault();
 
+		var supplier_id = $("#supplier_id").val();
+		var documento = $("#document").val();
+		var number = $("#number").val();
+
 		var arreglo = [];
 
 		$('#detalle_compra > tr').each(function(index){
@@ -153,22 +157,21 @@ function function_guarda_compra()
 		});
 		var jsonString = JSON.stringify(arreglo);
 
-		console.log(jsonString);
-	});
-}
+		//console.log(jsonString);
 
-function guarda_detalle(cantidad,articulo)
-{
-	var form = $("#form_purchase");
+		var form = $("#form_purchase");
 
-	var url = form.attr('action').replace(':QUANTITY',cantidad);
+		var url = form.attr('action').replace(':JSON',jsonString);
 
-	url = url.replace(':ID_ARTICLE',articulo);
+		url = url.replace(':ID_SUPPLIER',supplier_id);
+		url = url.replace(':DOCUMENT',documento);
+		url = url.replace(':NUMBER',number);
 
-	var data = form.serialize();
+		var data = form.serialize();
 
-	$.post(url,data,function(result){
-		console.log(result);
+		$.post(url,data,function(result){
+			console.log(result);
+		});
 	});
 }
 
@@ -197,9 +200,18 @@ function supplier_selection()
 
 		var id_proveedor = fila.data("id");
 
-		console.log(id_proveedor);
-
 		//carga datos a la vista general
+
+		var form = $("#form_suppliers_data");
+
+		var url = form.attr('action').replace(':ID',id_proveedor);
+
+		$.get(url,function(result){
+			$("#datos_proveedor").html(result).promise().done(function(){
+				//cerrar modal
+				$('#id_modal').modal('hide');
+			});
+		});
 
 	});
 }

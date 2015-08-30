@@ -9,4 +9,9 @@ class Supplier extends Model {
 
 	protected $fillable = ['rut','name'];
 
+	public function purchases()
+	{
+		return $this->hasMany('App\Purchase');
+	}
+
 }

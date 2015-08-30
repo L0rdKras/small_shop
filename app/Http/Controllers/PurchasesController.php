@@ -6,6 +6,10 @@ use App\Article;
 
 use App\Barrcode;
 
+use App\Purchase;
+
+use App\PurchaseDetail;
+
 use Request;
 
 use Response;
@@ -49,6 +53,13 @@ class PurchasesController extends Controller {
 
 		//crear tabla
 		return view('purchases.resource.suppliers_list',compact('suppliers'));
+	}
+
+	public function supplier_data($id)
+	{
+		$supplier = Supplier::find($id);
+
+		return view('purchases.resource.supplier_data',compact('supplier'));
 	}
 
 	public function suppliers()
@@ -144,35 +155,58 @@ class PurchasesController extends Controller {
 		return Response::json(array('message' => "No se encontro el codigo"));
 	}
 
-	public function save_purchase($cant,$id)
+	public function save_purchase($json,$id,$document,$number)
 	{
 		//$data = Request::only('name');
+		$count = Purchase::where('supplier_id', '=', $id,'and','document','=',$document,'and','number','=',$number)->count();
 
-		$data = array(
-			'quantity' => $cant,
-			'article_id' => $id
-		);
-
-		$rules = [
-			'quantity' => 'required',
-			'article_id' => 'required'
-		];
-
-		return $data;
-
-		$validation = \Validator::make($data,$rules);
-
-		if($validation->passes())
+		if($count == 0)
 		{
-			return $data;
-			$item = new ArticleDescription($data);
+			$data = array('number'=>$number,'document'=>$document,'supplier_id'=>$id);
 
-			$item->save();
+			$rules = [
+				'number'=>'required',
+				'document'=>'required',
+				'supplier_id'=>'required'
+			];
 
-			//return Redirect::back()->withInput()->withErrors($validation->messages());
-			return redirect()->back();
+			$validation = \Validator::make($data,$rules);
+
+			if($validation->passes())
+			{
+				$purchase = new Purchase($data);
+
+				$purchase->save();
+
+				$arrayjson = json_decode($json);
+
+				foreach ($arrayjson as $key => $value) {
+					//$aux.=$value->cantidad." y ".$value->articulo;
+
+					$data_detail = array('quantity'=>$value->cantidad,'article_id'=>$value->articulo,'purchase_id'=>$purchase->id);
+
+					$detail = new PurchaseDetail($data_detail);
+
+					$detail->save();
+
+					$article = Article::find($value->articulo);
+
+					$article->modificar_stock("+",$value->cantidad);
+
+					$article->save();
+				}
+				
+				//$item = new ArticleDescription($data);
+
+				//$item->save();
+
+				//return Redirect::back()->withInput()->withErrors($validation->messages());
+				//return redirect()->back();
+			}
+			return "No Valido $id $number $document";
+			//return redirect()->back()->withInput()->withErrors($validation->messages());
 		}
-		return redirect()->back()->withInput()->withErrors($validation->messages());
+
 	}
 
 }

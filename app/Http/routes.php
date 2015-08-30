@@ -71,11 +71,13 @@ Route::get('/compras/registro', ['as'=>'registro_compras', 'uses' => 'PurchasesC
 
 Route::get('/compras/registro/suppliers_list', ['as'=>'show_list_suppliers', 'uses' => 'PurchasesController@suppliers_list']);
 
+Route::get('/compras/registro/supplier/data/{id}', ['as'=>'load_supplier_data', 'uses' => 'PurchasesController@supplier_data']);
+
 Route::get('/compras/registro/load/code/{code}', ['as'=>'load_code', 'uses' => 'PurchasesController@load_code']);
 
 Route::get('/compras/registro/insert/article/{code}/{id}', ['as'=>'insert_article', 'uses' => 'PurchasesController@load_code']);
 
-Route::post('/compras/registro/save/article/{cant}/{id}', ['as'=>'save_purchase', 'uses' => 'PurchasesController@save_purchase']);
+Route::post('/compras/registro/save/purchase/{json}/{id}/{document}/{number}', ['as'=>'save_purchase', 'uses' => 'PurchasesController@save_purchase']);
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

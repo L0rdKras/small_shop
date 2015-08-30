@@ -27,7 +27,7 @@
 		        <div class="panel-heading">
 		          <h3 class="panel-title">Proveedor</h3>
 		        </div>
-		        <div class="panel-body">
+		        <div class="panel-body" id="datos_proveedor">
 		          <button id="btn_busca_prov" type="button" class="btn btn-lg btn-success">
 		          	Seleccionar Proveedor
 		          </button>
@@ -73,7 +73,7 @@
 		      </div>
 
 		    <div class="panel-body" id="save_area" style="display: none;">
-				{!! Form::open(array('route' => ['actualiza_descripcion'])) !!}
+				{!! Form::open(array('route' => ['save_purchase'])) !!}
 			    	<h3>
 			    		{!! Form::submit('Guardar Compra',array('class' => 'btn btn-lg btn-default','id'=>'btn_save_purchase')); !!}
 			    	</h3>
@@ -88,9 +88,11 @@
 {!! Form::close() !!}
 {!! Form::open(array('route' => ['insert_article',':CODE',':ID_ARTICLE'],'id'=>'form_insert','method'=>'POST')) !!}
 {!! Form::close() !!}
-{!! Form::open(array('route' => ['save_purchase',':QUANTITY',':ID_ARTICLE'],'id'=>'form_purchase','method'=>'POST')) !!}
+{!! Form::open(array('route' => ['save_purchase',':JSON',':ID_SUPPLIER',':DOCUMENT',':NUMBER'],'id'=>'form_purchase','method'=>'POST')) !!}
 {!! Form::close() !!}
 {!! Form::open(array('route' => ['show_list_suppliers'],'id'=>'form_suppliers_list','method'=>'GET')) !!}
+{!! Form::close() !!}
+{!! Form::open(array('route' => ['load_supplier_data',':ID'],'id'=>'form_suppliers_data','method'=>'GET')) !!}
 {!! Form::close() !!}
 
 <template id="template_datos_articulo">
