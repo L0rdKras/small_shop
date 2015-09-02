@@ -79,6 +79,12 @@ Route::get('/compras/registro/insert/article/{code}/{id}', ['as'=>'insert_articl
 
 Route::post('/compras/registro/save/purchase/{json}/{id}/{document}/{number}', ['as'=>'save_purchase', 'uses' => 'PurchasesController@save_purchase']);
 
+/**********************Ventas****************************/
+
+Route::get('/ventas', ['as'=>'ventas', 'uses' => 'SalesController@index']);
+
+Route::get('/ventas/emitir', ['as'=>'registro_ventas', 'uses' => 'SalesController@sell']);
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',

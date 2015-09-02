@@ -170,7 +170,11 @@ function function_guarda_compra()
 		var data = form.serialize();
 
 		$.post(url,data,function(result){
-			console.log(result);
+			alert(result);
+			if(result == "Compra Guardada")
+			{
+				location.reload();
+			}
 		});
 	});
 }

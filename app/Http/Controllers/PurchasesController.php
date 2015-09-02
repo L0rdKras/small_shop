@@ -146,7 +146,8 @@ class PurchasesController extends Controller {
 				'details' => $item->article->details,
 				'stock' => $item->article->stock,
 				'id' => $item->id,
-				'article_id' => $item->article_id
+				'article_id' => $item->article_id,
+				'price' => $item->article->price
 			);
 
 			return Response::json($info);
@@ -158,7 +159,7 @@ class PurchasesController extends Controller {
 	public function save_purchase($json,$id,$document,$number)
 	{
 		//$data = Request::only('name');
-		$count = Purchase::where('supplier_id', '=', $id,'and','document','=',$document,'and','number','=',$number)->count();
+		$count = Purchase::where('supplier_id','=', $id)->where('document','=',$document)->where('number','=',$number)->count();
 
 		if($count == 0)
 		{
@@ -196,9 +197,7 @@ class PurchasesController extends Controller {
 					$article->save();
 				}
 				
-				//$item = new ArticleDescription($data);
-
-				//$item->save();
+				return "Compra Guardada";
 
 				//return Redirect::back()->withInput()->withErrors($validation->messages());
 				//return redirect()->back();
@@ -206,6 +205,7 @@ class PurchasesController extends Controller {
 			return "No Valido $id $number $document";
 			//return redirect()->back()->withInput()->withErrors($validation->messages());
 		}
+		return "Hay una venta guardarda previamente con esos datos $count $number";
 
 	}
 
