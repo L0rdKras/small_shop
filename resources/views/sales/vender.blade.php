@@ -64,7 +64,7 @@
 {!! Form::close() !!}
 {!! Form::open(array('route' => ['insert_article',':CODE',':ID_ARTICLE'],'id'=>'form_insert','method'=>'POST')) !!}
 {!! Form::close() !!}
-{!! Form::open(array('route' => ['save_sale',':JSON'],'id'=>'form_sale','method'=>'POST')) !!}
+{!! Form::open(array('route' => ['save_sale',':JSON',':TOTAL'],'id'=>'form_sale','method'=>'POST')) !!}
 {!! Form::close() !!}
 
 

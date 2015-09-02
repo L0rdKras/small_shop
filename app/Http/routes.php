@@ -85,6 +85,8 @@ Route::get('/ventas', ['as'=>'ventas', 'uses' => 'SalesController@index']);
 
 Route::get('/ventas/emitir', ['as'=>'registro_ventas', 'uses' => 'SalesController@sell']);
 
+Route::post('/ventas/guardar/{json}/{total}', ['as'=>'save_sale', 'uses' => 'SalesController@save_sale']);
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',

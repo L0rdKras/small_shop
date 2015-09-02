@@ -178,16 +178,19 @@ function function_guarda_venta()
 
 		var arreglo = [];
 
-		$('#detalle_compra > tr').each(function(index){
+		$('#detalle_venta > tr').each(function(index){
 			//
 			var cantidad = $(this).data("cantidad");
 			var articulo = $(this).data("id");
+			var subtotal = $(this).data("subtotal");
 			
 			//guarda_detalle(cantidad,articulo);
-			arreglo.push({'cantidad':cantidad,'articulo':articulo});
+			arreglo.push({'cantidad':cantidad,'articulo':articulo,'subtotal':subtotal});
 
 		});
 		var jsonString = JSON.stringify(arreglo);
+
+		var total = $("#total_venta").val();
 
 		//console.log(jsonString);
 
@@ -195,9 +198,7 @@ function function_guarda_venta()
 
 		var url = form.attr('action').replace(':JSON',jsonString);
 
-		url = url.replace(':ID_SUPPLIER',supplier_id);
-		url = url.replace(':DOCUMENT',documento);
-		url = url.replace(':NUMBER',number);
+		url = url.replace(':TOTAL',total);
 
 		var data = form.serialize();
 
