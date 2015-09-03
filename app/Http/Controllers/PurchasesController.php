@@ -209,4 +209,18 @@ class PurchasesController extends Controller {
 
 	}
 
+	public function purchases_list()
+	{
+		$purchases = Purchase::orderBy('created_at','desc')->paginate(10);
+
+		return view('purchases.list',compact('purchases'));
+	}
+
+	public function purchase_info($id)
+	{
+		$purchase = Purchase::find($id);
+
+		return view('purchases.info_purchase',compact('purchase'));
+	}
+
 }

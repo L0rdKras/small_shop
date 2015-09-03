@@ -87,4 +87,18 @@ class SalesController extends Controller {
 
 	}
 
+	public function sales_list()
+	{
+		$sales = Sale::orderBy('created_at','desc')->paginate(10);
+
+		return view('sales.list',compact('sales'));
+	}
+
+	public function sale_info($id)
+	{
+		$sale = Sale::find($id);
+
+		return view('sales.info_sale',compact('sale'));
+	}
+
 }

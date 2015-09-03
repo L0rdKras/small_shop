@@ -204,7 +204,7 @@ function function_guarda_venta()
 
 		$.post(url,data,function(result){
 			alert(result);
-			if(result == "Compra Guardada")
+			if(result == "Venta Guardada")
 			{
 				location.reload();
 			}

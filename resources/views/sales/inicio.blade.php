@@ -15,6 +15,7 @@
 	              Opciones
 	            </a>
 	            <a href="{{route('registro_ventas')}}" class="list-group-item">Registro Ventas</a>
+	            <a href="{{route('historial_ventas')}}" class="list-group-item">Historial Ventas</a>
 	            	            
 	          </div>
 	        </div><!-- /.col-sm-4 -->

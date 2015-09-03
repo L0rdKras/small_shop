@@ -79,6 +79,10 @@ Route::get('/compras/registro/insert/article/{code}/{id}', ['as'=>'insert_articl
 
 Route::post('/compras/registro/save/purchase/{json}/{id}/{document}/{number}', ['as'=>'save_purchase', 'uses' => 'PurchasesController@save_purchase']);
 
+Route::get('/compras/historial',['as'=>'historial_compras','uses'=>'PurchasesController@purchases_list']);
+
+Route::get('/compras/historial/info/compra/{id}',['as'=>'info_compra','uses'=>'PurchasesController@purchase_info']);
+
 /**********************Ventas****************************/
 
 Route::get('/ventas', ['as'=>'ventas', 'uses' => 'SalesController@index']);
@@ -86,6 +90,10 @@ Route::get('/ventas', ['as'=>'ventas', 'uses' => 'SalesController@index']);
 Route::get('/ventas/emitir', ['as'=>'registro_ventas', 'uses' => 'SalesController@sell']);
 
 Route::post('/ventas/guardar/{json}/{total}', ['as'=>'save_sale', 'uses' => 'SalesController@save_sale']);
+
+Route::get('/ventas/historial',['as'=>'historial_ventas','uses'=>'SalesController@sales_list']);
+
+Route::get('/ventas/historial/info/venta/{id}',['as'=>'info_venta','uses'=>'SalesController@sale_info']);
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
