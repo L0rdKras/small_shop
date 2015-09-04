@@ -44,6 +44,7 @@
 		                <th>Detalles</th>
 		                <th>Precio</th>
 		                <th>Editar</th>
+		                <th>Info</th>
 		              </tr>
 		            </thead>
 		            <tbody>
@@ -57,6 +58,10 @@
 		                	<a class="btn btn-info" href="{{ route('editar_articulo', [$article->id]) }}">Editar</a>
 		                	<a class="btn btn-success" href="{{ route('codigo_de_barra', [$article->id]) }}">Bar Code</a>
 		                	<a class="btn btn-danger">Borrar</a>
+		                </td>
+		                <td>
+		                	<a class="btn btn-info" href="{{ route('compras_articulo', [$article->id]) }}">Compras</a>
+		                	<a class="btn btn-success" href="{{ route('ventas_articulo', [$article->id]) }}">Ventas</a>
 		                </td>
 		              </tr>
 		              @endforeach

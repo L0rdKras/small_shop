@@ -24,6 +24,11 @@ class Article extends Model {
 		return $this->hasMany('App\PurchaseDetail');
 	}
 
+	public function saledetails()
+	{
+		return $this->hasMany('App\SaleDetail');
+	}
+
 	public function modificar_stock($operator,$quantity)
 	{
 		if($operator == "+")

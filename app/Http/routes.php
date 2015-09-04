@@ -43,6 +43,10 @@ Route::get('/articulos/editar/articulo/{id}', ['as'=>'editar_articulo', 'uses' =
 
 Route::patch('/articulos/editar/articulo/{id}', ['as'=>'actualiza_articulo', 'uses' => 'ArticlesController@update_article']);
 
+Route::get('/articulos/compras/{id}', ['as'=>'compras_articulo', 'uses' => 'ArticlesController@article_purchases']);
+
+Route::get('/articulos/ventas/{id}', ['as'=>'ventas_articulo', 'uses' => 'ArticlesController@article_sales']);
+
 /******Codigo de barra********/
 
 Route::get('/articulos/codigo/de/barra/articulo/{id}', ['as'=>'codigo_de_barra', 'uses' => 'ArticlesController@barcode_article']);

@@ -261,4 +261,18 @@ class ArticlesController extends Controller {
 		return redirect()->back();
 	}
 
+	public function article_purchases($id)
+	{
+		$article = Article::find($id);
+
+		return view('articles.purchases',compact('article'));
+	}
+
+	public function article_sales($id)
+	{
+		$article = Article::find($id);
+
+		return view('articles.sales',compact('article'));
+	}
+
 }
