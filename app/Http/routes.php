@@ -99,6 +99,10 @@ Route::get('/ventas/historial',['as'=>'historial_ventas','uses'=>'SalesControlle
 
 Route::get('/ventas/historial/info/venta/{id}',['as'=>'info_venta','uses'=>'SalesController@sale_info']);
 
+/***********************Impresiones******************************/
+
+Route::get('/impresion/venta/{id}',['as'=>'imp_venta','uses'=>'PdfController@sale']);
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',

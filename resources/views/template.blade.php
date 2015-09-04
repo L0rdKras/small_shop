@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>MiTiendaWAPP</title>
 
-	<link href="{{ asset('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
+	<link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('bootstrap/css/bootstrap-theme.css') }}" rel="stylesheet">
 	<link href="{{ asset('bootstrap/css/theme.css') }}" rel="stylesheet">
 

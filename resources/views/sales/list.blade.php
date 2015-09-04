@@ -32,6 +32,7 @@
 		                <td>{{date_format($sale->created_at, 'd/m/Y')}}</td>
 		                <td>
 		                	<a class="btn btn-info" href="{{ route('info_venta', [$sale->id]) }}">Ver</a>
+		                	<a class="btn btn-info" href="{{ route('imp_venta', [$sale->id]) }}">Impr.</a>
 		                </td>
 		              </tr>
 		              @endforeach

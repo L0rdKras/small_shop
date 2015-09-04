@@ -149,6 +149,9 @@ return [
     	'Collective\Html\HtmlServiceProvider',
     	// ...
 
+    	//PDF
+    	'Barryvdh\DomPDF\ServiceProvider',
+
 	],
 
 	/*
@@ -201,6 +204,9 @@ return [
 	      'Form' => 'Collective\Html\FormFacade',
 	      'Html' => 'Collective\Html\HtmlFacade',
 	    // ...
+
+	    //PDF
+	    'PDF' => 'Barryvdh\DomPDF\Facade',
 
 	],
 
