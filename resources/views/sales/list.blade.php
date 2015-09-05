@@ -3,7 +3,7 @@
 @section('content')
 <div class="container theme-showcase" role="main">
 	<div class="jumbotron">
-        <h1>Lista de Ventas</h1>
+        <h1>Lista de Ventas.</h1>
         <p>Historial de las ventas de la tienda</p>
     </div>
 
