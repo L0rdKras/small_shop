@@ -3,7 +3,7 @@
 @section('content')
 <div class="container theme-showcase" role="main">
 	<div class="jumbotron">
-        <h1>MiTiendaWAPP:Basic</h1>
+        <h1>Boutique Tebada</h1>
         <p>Una rapida solución a pequeñas tiendas minoristas</p>
     </div>
 
