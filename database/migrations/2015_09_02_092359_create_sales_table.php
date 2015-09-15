@@ -16,7 +16,10 @@ class CreateSalesTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('total');
+			$table->integer('client_id')->unsigned()->nullable();
 			$table->timestamps();
+
+			$table->foreign('client_id')->references('id')->on('clients');
 		});
 	}
 

@@ -14,6 +14,7 @@
 	            <a href="#" class="list-group-item active">
 	              Opciones
 	            </a>
+	            <a href="{{route('registro_cliente')}}" class="list-group-item">Registro Clientes</a>
 	            <a href="{{route('registro_ventas')}}" class="list-group-item">Registro Ventas</a>
 	            <a href="{{route('historial_ventas')}}" class="list-group-item">Historial Ventas</a>
 	            	            

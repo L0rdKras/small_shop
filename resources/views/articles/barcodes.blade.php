@@ -53,7 +53,7 @@
 		            </thead>
 		            <tbody>
 		              @foreach($article->barrcodes as $barrcode)
-		              <tr data-id="{{$article->id}}">
+		              <tr data-id="{{$barrcode->id}}">
 		                <td>{{$barrcode->id}}</td>
 		                <td>{{$barrcode->code}}</td>		                
 		                <td>

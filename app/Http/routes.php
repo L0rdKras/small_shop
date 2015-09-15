@@ -99,6 +99,16 @@ Route::get('/ventas/historial',['as'=>'historial_ventas','uses'=>'SalesControlle
 
 Route::get('/ventas/historial/info/venta/{id}',['as'=>'info_venta','uses'=>'SalesController@sale_info']);
 
+/***************************Clientes*********************************************/
+
+Route::get('/clientes/registro',['as'=>'registro_cliente','uses'=>'ClientController@register_form']);
+
+Route::post('/clientes/registro',['as'=>'guardar_cliente','uses'=>'ClientController@save_client']);
+
+Route::get('/clientes/editar/{id}',['as'=>'editar_cliente','uses'=>'ClientController@edit_client']);
+
+Route::patch('/clientes/editar/{id}',['as'=>'actualiza_cliente','uses'=>'ClientController@update_client']);
+
 /***********************Impresiones******************************/
 
 Route::get('/impresion/venta/{id}',['as'=>'imp_venta','uses'=>'PdfController@sale']);
