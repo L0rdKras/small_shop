@@ -93,7 +93,7 @@ Route::get('/ventas', ['as'=>'ventas', 'uses' => 'SalesController@index']);
 
 Route::get('/ventas/emitir', ['as'=>'registro_ventas', 'uses' => 'SalesController@sell']);
 
-Route::post('/ventas/guardar/{json}/{total}', ['as'=>'save_sale', 'uses' => 'SalesController@save_sale']);
+Route::post('/ventas/guardar/{json}/{total}/{medio}', ['as'=>'save_sale', 'uses' => 'SalesController@save_sale']);
 
 Route::get('/ventas/historial',['as'=>'historial_ventas','uses'=>'SalesController@sales_list']);
 

@@ -147,7 +147,23 @@ function add_detalle(bar_code,datos)
 
 function muestra_boton_venta()
 {
-	$("#save_area").fadeIn();
+	$("#save_area").fadeIn('slow',selecciona_medio());
+}
+
+function selecciona_medio()
+{
+	$("#medio_pago").on('change',function(){
+		if($(this).val() == "Credito")
+		{
+			//muesta boton seleccionar cliente
+			$("#save_area").append("<div id='cliente_venta'><button id='btn_busca_client' class='btn btn-lg btn-default'>Cliente</button></div>").promise().done(function(){
+				function_search_clients();
+			});
+		}else{
+			//oculta boton seleccionar cliente
+			$("#cliente_venta").remove();
+		}
+	});
 }
 
 function actualiza_total()
@@ -192,6 +208,8 @@ function function_guarda_venta()
 
 		var total = $("#total_venta").val();
 
+		var medio = $("#medio_pago").val();
+
 		//console.log(jsonString);
 
 		var form = $("#form_sale");
@@ -199,6 +217,8 @@ function function_guarda_venta()
 		var url = form.attr('action').replace(':JSON',jsonString);
 
 		url = url.replace(':TOTAL',total);
+
+		url = url.replace(':MEDIO',medio);
 
 		var data = form.serialize();
 
@@ -209,5 +229,46 @@ function function_guarda_venta()
 				location.reload();
 			}
 		});
+	});
+}
+
+function function_search_clients()
+{
+	$("#btn_busca_client").on("click",function(e){
+		e.preventDefault();
+		var form = $("#form_clients_list");
+
+		var url = form.attr('action');
+
+		$.get(url,function(result){
+			$("#ver_clientes").html(result).promise().done(function(){
+				$('#id_modal').modal();
+				client_selection();
+			});
+		});
+	});
+}
+
+function client_selection()
+{
+	$(".btn_add_client").on('click',function(e){
+		e.preventDefault();
+		var fila = $(this).parents("tr");
+
+		var id_cliente = fila.data("id");
+
+		//carga datos a la vista general
+
+		var form = $("#form_clients_data");
+
+		var url = form.attr('action').replace(':ID',id_cliente);
+
+		$.get(url,function(result){
+			$("#datos_cliente").html(result).promise().done(function(){
+				//cerrar modal
+				$('#id_modal').modal('hide');
+			});
+		});
+
 	});
 }

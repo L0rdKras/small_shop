@@ -6,7 +6,7 @@ class Sale extends Model {
 
 	protected $table = 'sales';
 
-	protected $fillable = ['total'];
+	protected $fillable = ['total','payment_method'];
 
 	public function saledetails()
 	{

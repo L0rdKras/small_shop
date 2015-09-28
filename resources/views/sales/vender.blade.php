@@ -1,6 +1,25 @@
 @extends('template')
 
 @section('content')
+
+<div class="modal fade" id="id_modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Seleccion de Clientes</h4>
+      </div>
+      <div class="modal-body" id="ver_clientes">
+        <p>Tabla clientes&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+        
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
+
 <div class="container theme-showcase" role="main">
 	<div class="page-hader">
     	<div class="row">
@@ -52,6 +71,8 @@
 			    	<h3>
 			    		{!! Form::label('total_venta', 'Total Venta',array('class' => 'label label-default')); !!}
 	    				{!! Form::text('total_venta',null,array('id'=>'total_venta','readonly'=>'readonly')); !!}
+	    				{!! Form::label('medio_pago', 'Medio de Pago',array('class' => 'label label-default')); !!}
+	    				{!! Form::select('medio_pago', array('' => '','Efectivo'=>'Efectivo','Tarjeta'=>'Tarjeta','Credito'=>'Credito')); !!}
 			    		{!! Form::submit('Guardar Venta',array('class' => 'btn btn-lg btn-default','id'=>'btn_save_sale')); !!}
 			    	</h3>
 				{!! Form::close() !!}
@@ -64,7 +85,10 @@
 {!! Form::close() !!}
 {!! Form::open(array('route' => ['insert_article',':CODE',':ID_ARTICLE'],'id'=>'form_insert','method'=>'POST')) !!}
 {!! Form::close() !!}
-{!! Form::open(array('route' => ['save_sale',':JSON',':TOTAL'],'id'=>'form_sale','method'=>'POST')) !!}
+{!! Form::open(array('route' => ['save_sale',':JSON',':TOTAL',':MEDIO'],'id'=>'form_sale','method'=>'POST')) !!}
+{!! Form::close() !!}
+
+{!! Form::open(array('route' => ['show_list_clients'],'id'=>'form_clients_list','method'=>'GET')) !!}
 {!! Form::close() !!}
 
 

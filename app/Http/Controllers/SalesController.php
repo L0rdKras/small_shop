@@ -44,14 +44,15 @@ class SalesController extends Controller {
 		return view('sales.vender');
 	}
 
-	public function save_sale($json,$total)
+	public function save_sale($json,$total,$medio)
 	{
 		//$data = Request::only('name');
 
-		$data = array('total'=>$total);
+		$data = array('total'=>$total,'payment_method'=>$medio);
 
 		$rules = [
-			'total'=>'required'
+			'total'=>'required',
+			'payment_method'=>'required'
 		];
 
 		$validation = \Validator::make($data,$rules);
@@ -99,6 +100,13 @@ class SalesController extends Controller {
 		$sale = Sale::find($id);
 
 		return view('sales.info_sale',compact('sale'));
+	}
+
+	public function clients_list()
+	{
+		$clients = Client::orderBy('created_at','desc')->paginate(10);
+
+		return view('sales.clients_list',compact('clients'));
 	}
 
 }
