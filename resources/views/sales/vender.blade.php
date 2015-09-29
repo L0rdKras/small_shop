@@ -68,6 +68,7 @@
 
 		    <div class="panel-body" id="save_area" style="display: none;">
 				{!! Form::open(array('route' => ['save_purchase'])) !!}
+						{!! Form::hidden('id_client_sell','0',array('id'=>'id_client_sell')) !!}
 			    	<h3>
 			    		{!! Form::label('total_venta', 'Total Venta',array('class' => 'label label-default')); !!}
 	    				{!! Form::text('total_venta',null,array('id'=>'total_venta','readonly'=>'readonly')); !!}
@@ -85,12 +86,14 @@
 {!! Form::close() !!}
 {!! Form::open(array('route' => ['insert_article',':CODE',':ID_ARTICLE'],'id'=>'form_insert','method'=>'POST')) !!}
 {!! Form::close() !!}
-{!! Form::open(array('route' => ['save_sale',':JSON',':TOTAL',':MEDIO'],'id'=>'form_sale','method'=>'POST')) !!}
+{!! Form::open(array('route' => ['save_sale',':JSON',':TOTAL',':MEDIO',':ID_CLIENT'],'id'=>'form_sale','method'=>'POST')) !!}
 {!! Form::close() !!}
 
 {!! Form::open(array('route' => ['show_list_clients'],'id'=>'form_clients_list','method'=>'GET')) !!}
 {!! Form::close() !!}
 
+{!! Form::open(array('route' => ['load_data_client',':ID'],'id'=>'form_clients_data','method'=>'GET')) !!}
+{!! Form::close() !!}
 
 <template id="template_datos_articulo">
 	<div class="panel-body">

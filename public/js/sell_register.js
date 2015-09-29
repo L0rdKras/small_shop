@@ -4,6 +4,7 @@ $(document).ready(function() {
     function_delete_description();
     function_load_article();
     function_guarda_venta();
+    selecciona_medio();
 });
 
 function function_delete_description(id)
@@ -147,7 +148,10 @@ function add_detalle(bar_code,datos)
 
 function muestra_boton_venta()
 {
-	$("#save_area").fadeIn('slow',selecciona_medio());
+	$("#medio_pago").val("");
+	$("#id_client_sell").val("0");
+	$("#cliente_venta").remove();
+	$("#save_area").fadeIn('slow');
 }
 
 function selecciona_medio()
@@ -162,6 +166,7 @@ function selecciona_medio()
 		}else{
 			//oculta boton seleccionar cliente
 			$("#cliente_venta").remove();
+			$("#id_client_sell").val("0");
 		}
 	});
 }
@@ -210,6 +215,8 @@ function function_guarda_venta()
 
 		var medio = $("#medio_pago").val();
 
+		var id_cliente = $("#id_client_sell").val();
+
 		//console.log(jsonString);
 
 		var form = $("#form_sale");
@@ -220,10 +227,13 @@ function function_guarda_venta()
 
 		url = url.replace(':MEDIO',medio);
 
+		url = url.replace(':ID_CLIENT',id_cliente);
+
 		var data = form.serialize();
 
 		$.post(url,data,function(result){
 			alert(result);
+			//console.log(result);
 			if(result == "Venta Guardada")
 			{
 				location.reload();
@@ -264,9 +274,12 @@ function client_selection()
 		var url = form.attr('action').replace(':ID',id_cliente);
 
 		$.get(url,function(result){
-			$("#datos_cliente").html(result).promise().done(function(){
+			//console.log(result["vista"]);
+			//var data = JSON.parse(result);
+			$("#cliente_venta").append(result["vista"]).promise().done(function(){
 				//cerrar modal
 				$('#id_modal').modal('hide');
+				$("#id_client_sell").val(result["id_cliente"]);
 			});
 		});
 

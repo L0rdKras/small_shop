@@ -93,11 +93,15 @@ Route::get('/ventas', ['as'=>'ventas', 'uses' => 'SalesController@index']);
 
 Route::get('/ventas/emitir', ['as'=>'registro_ventas', 'uses' => 'SalesController@sell']);
 
-Route::post('/ventas/guardar/{json}/{total}/{medio}', ['as'=>'save_sale', 'uses' => 'SalesController@save_sale']);
+Route::post('/ventas/guardar/{json}/{total}/{medio}/{cliente}', ['as'=>'save_sale', 'uses' => 'SalesController@save_sale']);
 
 Route::get('/ventas/historial',['as'=>'historial_ventas','uses'=>'SalesController@sales_list']);
 
 Route::get('/ventas/historial/info/venta/{id}',['as'=>'info_venta','uses'=>'SalesController@sale_info']);
+
+Route::get('ventas/ver/modal/clientes',['as'=>'show_list_clients','uses'=>'SalesController@clients_list']);
+
+Route::get('ventas/ver/modal/data/cliente/{id}',['as'=>'load_data_client','uses'=>'SalesController@client_data']);
 
 /***************************Clientes*********************************************/
 
@@ -108,6 +112,8 @@ Route::post('/clientes/registro',['as'=>'guardar_cliente','uses'=>'ClientControl
 Route::get('/clientes/editar/{id}',['as'=>'editar_cliente','uses'=>'ClientController@edit_client']);
 
 Route::patch('/clientes/editar/{id}',['as'=>'actualiza_cliente','uses'=>'ClientController@update_client']);
+
+Route::get('/clientes/deudas/cliente/{id}',['as'=>'deudas_cliente','uses'=>'ClientController@client_debts']);
 
 /***********************Impresiones******************************/
 

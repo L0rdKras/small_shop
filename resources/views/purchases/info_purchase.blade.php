@@ -44,6 +44,7 @@
 		                <th>Descripcion</th>
 		                <th>Detalle</th>
 		                <th>Cantidad</th>
+                        <th>Precio</th>
 		              </tr>
 		            </thead>
 		            <tbody>
@@ -53,6 +54,7 @@
 		                <td>{{$purchasedetail->article->article_description->name}}</td>
 		                <td>{{$purchasedetail->article->details}}</td>
 		                <td>{{$purchasedetail->quantity}}</td>
+                        <td>{{$purchasedetail->prize}}</td>
 		              </tr>
 		              @endforeach
 		            </tbody>

@@ -184,7 +184,7 @@ class PurchasesController extends Controller {
 				foreach ($arrayjson as $key => $value) {
 					//$aux.=$value->cantidad." y ".$value->articulo;
 
-					$data_detail = array('quantity'=>$value->cantidad,'article_id'=>$value->articulo,'purchase_id'=>$purchase->id);
+					$data_detail = array('quantity'=>$value->cantidad,'prize'=>$value->precio,'article_id'=>$value->articulo,'purchase_id'=>$purchase->id);
 
 					$detail = new PurchaseDetail($data_detail);
 

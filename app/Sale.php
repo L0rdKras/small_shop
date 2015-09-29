@@ -6,14 +6,14 @@ class Sale extends Model {
 
 	protected $table = 'sales';
 
-	protected $fillable = ['total','payment_method'];
+	protected $fillable = ['total','payment_method','client_id'];
 
 	public function saledetails()
 	{
 		return $this->hasMany('App\SaleDetail');
 	}
 
-	public function Client()
+	public function client()
 	{
 		return $this->belongsTo('App\Client');
 	}

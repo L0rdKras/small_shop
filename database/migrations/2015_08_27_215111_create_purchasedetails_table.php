@@ -16,6 +16,7 @@ class CreatePurchasedetailsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->integer('quantity');
+			$table->integer('prize')->unsigned();
 			$table->integer('article_id')->unsigned();
 			$table->integer('purchase_id')->unsigned();
 			$table->timestamps();

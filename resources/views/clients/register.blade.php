@@ -51,6 +51,7 @@
 		                <td>{{$client->phone}}</td>
 		                <td>
 		                	<a class="btn btn-info" href="{{ route('editar_cliente', [$client->id]) }}">Editar</a>
+		                	<a class="btn btn-warning" href="{{ route('deudas_cliente', [$client->id]) }}">Deudas</a>
 		                </td>
 		              </tr>
 		              @endforeach

@@ -106,5 +106,12 @@ class ClientController extends Controller {
 		return redirect()->back()->withInput()->withErrors($validation->messages());
 	}
 
+	public function client_debts($id)
+	{
+		$client = Client::find($id);
+
+		return view('clients.debts_list',compact('client'));
+	}
+
 
 }

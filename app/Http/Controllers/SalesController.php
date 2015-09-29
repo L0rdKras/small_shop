@@ -1,10 +1,16 @@
 <?php namespace App\Http\Controllers;
 
+use Response;
+
 use App\Article;
 
 use App\Sale;
 
 use App\SaleDetail;
+
+use App\Client;
+
+use App\Debt;
 
 class SalesController extends Controller {
 
@@ -44,11 +50,15 @@ class SalesController extends Controller {
 		return view('sales.vender');
 	}
 
-	public function save_sale($json,$total,$medio)
+	public function save_sale($json,$total,$medio,$cliente)
 	{
 		//$data = Request::only('name');
 
-		$data = array('total'=>$total,'payment_method'=>$medio);
+		$data = [
+			'total'=>$total,
+			'payment_method'=>$medio,
+			'client_id'=>$cliente
+			];
 
 		$rules = [
 			'total'=>'required',
@@ -59,6 +69,9 @@ class SalesController extends Controller {
 
 		if($validation->passes())
 		{
+			if($data['client_id'] == 0){
+				$data['client_id'] = null;
+			}
 			$sale = new Sale($data);
 
 			$sale->save();
@@ -79,6 +92,17 @@ class SalesController extends Controller {
 				$article->modificar_stock("-",$value->cantidad);
 
 				$article->save();
+			}
+
+			//si es credito, crear deuda
+
+			if($medio == "Credito"){
+				$today = date("Y-m-d");
+				$data_deuda = array('expiration'=>$today,'total'=>$total,'client_id'=>$cliente,'sale_id'=>$sale->id);
+
+				$debt = new Debt($data_deuda);
+
+				$debt->save();
 			}
 			
 			return "Venta Guardada";
@@ -107,6 +131,30 @@ class SalesController extends Controller {
 		$clients = Client::orderBy('created_at','desc')->paginate(10);
 
 		return view('sales.clients_list',compact('clients'));
+	}
+
+	public function client_data($id)
+	{
+		$client = Client::find($id);
+
+		$vista 	= view('sales.data_client',compact('client'));
+
+		$view_data = $vista->render();
+
+		$view_data = str_replace("\n", "", $view_data);
+		$view_data = str_replace("\t", "", $view_data);
+		/*$view_data = str_replace('\"', '"', $view_data);*/
+
+		$view_data = stripslashes($view_data);
+
+		$json 	= response()->json(
+			array(
+				"vista"=>$view_data,
+				"id_cliente"=>$id
+				)
+			);
+
+		return ($json);
 	}
 
 }

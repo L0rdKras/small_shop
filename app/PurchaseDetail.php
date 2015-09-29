@@ -6,7 +6,7 @@ class PurchaseDetail extends Model {
 
 	protected $table = 'purchasedetails';
 
-	protected $fillable = ['quantity','article_id','purchase_id'];
+	protected $fillable = ['quantity','prize','article_id','purchase_id'];
 
 	public function article()
 	{

@@ -41,6 +41,7 @@
 		                <th>Numero</th>
 		                <th>Fecha</th>
 		                <th>Cantidad</th>
+                        <th>Precio</th>
 		              </tr>
 		            </thead>
 		            <tbody>
@@ -50,6 +51,7 @@
 		                <td>{{$purchasedetail->purchase->number}}</td>
 		                <td>{{date_format($purchasedetail->purchase->created_at,'d-m-Y')}}</td>
 		                <td>{{$purchasedetail->quantity}}</td>
+                        <td>{{$purchasedetail->prize}}</td>
 		                
 		              </tr>
 		              @endforeach

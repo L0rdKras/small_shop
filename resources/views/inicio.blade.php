@@ -3,8 +3,8 @@
 @section('content')
 <div class="container theme-showcase" role="main">
 	<div class="jumbotron">
-        <h1>MiTiendaWAPP</h1>
-        <p>Una rapida solución a pequeñas tiendas minoristas</p>
+        
+        <img style="width 100%;" src="{{ asset('images/tebada.jpg') }}" alt="">
     </div>
 
     <div class="container marketing">

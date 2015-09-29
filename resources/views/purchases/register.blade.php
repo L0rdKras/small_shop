@@ -62,6 +62,7 @@
 				                <th>Descripcion</th>
 				                <th>Detalle</th>
 				                <th>Cantidad</th>
+				                <th>Precio</th>
 				                <th>Editar</th>
 				              </tr>
 				            </thead>
@@ -110,6 +111,10 @@
 	    		{!! Form::label('stock_cargado', 'Stock',array('class' => 'label label-default')); !!}
 	    		{!! Form::text('stock_cargado',null,array('id'=>'stock_cargado','readonly'=>'readonly')); !!}
 	    	</h3>
+	    	<h3>
+	    		{!! Form::label('precio_cargado', 'Precio',array('class' => 'label label-default')); !!}
+	    		{!! Form::text('precio_cargado',null,array('id'=>'precio_cargado')); !!}
+	    	</h3>
 	    	<h3>	
 	    		{!! Form::label('cantidad', 'Cantidad Compra',array('class' => 'label label-default')); !!}
 	    		{!! Form::text('cantidad',null,array('id'=>'cantidad')); !!}
@@ -120,12 +125,13 @@
 </template>
 
 <template id="fila_tabla">
-	<tr class="fila_detalle" data-id=":id_articulo" data-cantidad=":cantidad_compra" id=":id_fila">
+	<tr class="fila_detalle" data-id=":id_articulo" data-cantidad=":cantidad_compra" id=":id_fila" data-precio=":precio_compra">
 		<td>C.I.A</td>
 		<td>CodigoBarra</td>
 		<td>Descripcion</td>
 		<td>Detalle</td>
 		<td>Cantidad</td>
+		<td>Precio</td>
 		<td><a class="btn btn-danger">Borrar</a></td>
 	</tr>
 </template>

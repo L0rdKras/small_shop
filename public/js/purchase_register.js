@@ -84,6 +84,7 @@ function add_detalle(bar_code,datos)
 	$("#btn_load_article").on("click",function(e){
 		e.preventDefault();
 		var cantidad = $("#cantidad").val();
+		var precio = $("#precio_cargado").val();
 
 		/*var form = $("#form_insert");
 
@@ -94,7 +95,7 @@ function add_detalle(bar_code,datos)
 		var data = form.serialize();
 
 		alert(url);*/
-		if(cantidad>0)
+		if(cantidad>0 && precio>0)
 		{
 			
 			var fila = $("#fila_tabla").html();
@@ -104,8 +105,10 @@ function add_detalle(bar_code,datos)
 			fila = fila.replace("Descripcion",datos.description_article);
 			fila = fila.replace("Detalle",datos.details);
 			fila = fila.replace("Cantidad",cantidad);
+			fila = fila.replace("Precio",precio);
 			fila = fila.replace(":id_articulo",datos.article_id);
 			fila = fila.replace(":cantidad_compra",cantidad);
+			fila = fila.replace(":precio_compra",precio);
 			fila = fila.replace(":id_fila",id_global);
 
 			id_global++;
@@ -150,9 +153,10 @@ function function_guarda_compra()
 			//
 			var cantidad = $(this).data("cantidad");
 			var articulo = $(this).data("id");
+			var precio = $(this).data("precio");
 			
 			//guarda_detalle(cantidad,articulo);
-			arreglo.push({'cantidad':cantidad,'articulo':articulo});
+			arreglo.push({'cantidad':cantidad,'articulo':articulo,'precio':precio});
 
 		});
 		var jsonString = JSON.stringify(arreglo);

@@ -15,10 +15,15 @@ class CreateDebtsTable extends Migration {
 		Schema::create('debts', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->time('expiration');
+			$table->date('expiration');
+			$table->enum('status',['Pendiente','Pagada'])->default("Pendiente");
+			$table->integer('total');
 			$table->integer('client_id')->unsigned();
 			$table->integer('sale_id')->unsigned();
 			$table->timestamps();
+
+			$table->foreign('client_id')->references('id')->on('clients');
+			$table->foreign('sale_id')->references('id')->on('sales');
 		});
 	}
 

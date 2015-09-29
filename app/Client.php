@@ -10,7 +10,12 @@ class Client extends Model {
 
 	public function sales()
 	{
-		return $this->hasMany('App\Sales');
+		return $this->hasMany('App\Sale');
+	}
+
+	public function debts()
+	{
+		return $this->hasMany('App\Debt');
 	}
 
 }
