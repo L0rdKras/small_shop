@@ -1,6 +1,7 @@
 <?php namespace App\Http\Controllers;
 
 use App\Client;
+use App\Debt;
 
 use Request;
 
@@ -111,6 +112,13 @@ class ClientController extends Controller {
 		$client = Client::find($id);
 
 		return view('clients.debts_list',compact('client'));
+	}
+
+	public function pay_debt($id)
+	{
+		$debt = Debt::find($id);
+
+		return view('clients.debts_detail',compact('debt'));
 	}
 
 

@@ -1,3 +1,9 @@
+suPHP_ConfigPath /home/sistemas/public_html
+
+<Files php.ini>
+order allow,deny
+deny from all
+</Files>
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews
@@ -13,3 +19,4 @@
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
 </IfModule>
+

@@ -17,12 +17,19 @@
 
 
 
-Route::controllers([
+/*Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
-]);
+]);*/
+Route::get('auth/login', 'Auth\AuthController@getLogin');
+Route::post('auth/login', 'Auth\AuthController@postLogin');
+
+// Registration routes...
 
 Route::group( ['middleware' => 'auth' ], function() { 
+	Route::get('auth/logout', 'Auth\AuthController@getLogout');
+	Route::get('auth/register', 'Auth\AuthController@getRegister');
+	Route::post('auth/register', 'Auth\AuthController@postRegister');
 	//Rutas a proteger... 
 	Route::get('/', 'WelcomeController@index');
 
@@ -67,36 +74,45 @@ Route::group( ['middleware' => 'auth' ], function() {
 	Route::delete('/articulos/borra/codigo/de/barra/{id}', ['as'=>'borra_codigo', 'uses' => 'ArticlesController@delete_barcode']);
 
 	/*************COMPRAS***************/
+	Route::filter('is_admin', function()
+	{
+	    if(Auth::user()->type != 'admin' ) return Redirect::to('/');
+	});
 
-	Route::get('/compras', ['as'=>'compras', 'uses' => 'PurchasesController@index']);
+	Route::group(['before' => 'is_admin'], function()
+	{
+		//todas mis rutas que necesiten tener el permiso de admin.
+		Route::get('/compras', ['as'=>'compras', 'uses' => 'PurchasesController@index']);
 
-	/*****************proveedores************************/
+		/*****************proveedores************************/
 
-	Route::get('/compras/proveedores', ['as'=>'proveedores', 'uses' => 'PurchasesController@suppliers']);
+		Route::get('/compras/proveedores', ['as'=>'proveedores', 'uses' => 'PurchasesController@suppliers']);
 
-	Route::post('/compras/guarda/proveedor', ['as'=>'salva_proveedor', 'uses' => 'PurchasesController@save_supplier']);
+		Route::post('/compras/guarda/proveedor', ['as'=>'salva_proveedor', 'uses' => 'PurchasesController@save_supplier']);
 
-	Route::get('/compras/editar/proveedor/{id}', ['as'=>'editar_proveedor', 'uses' => 'PurchasesController@edit_supplier']);
+		Route::get('/compras/editar/proveedor/{id}', ['as'=>'editar_proveedor', 'uses' => 'PurchasesController@edit_supplier']);
 
-	Route::patch('/compras/editar/proveedor/{id}', ['as'=>'actualiza_proveedor', 'uses' => 'PurchasesController@update_supplier']);
+		Route::patch('/compras/editar/proveedor/{id}', ['as'=>'actualiza_proveedor', 'uses' => 'PurchasesController@update_supplier']);
 
-	/**************ingreso de compras**********************/
+		/**************ingreso de compras**********************/
 
-	Route::get('/compras/registro', ['as'=>'registro_compras', 'uses' => 'PurchasesController@purchase_register']);
+		Route::get('/compras/registro', ['as'=>'registro_compras', 'uses' => 'PurchasesController@purchase_register']);
 
-	Route::get('/compras/registro/suppliers_list', ['as'=>'show_list_suppliers', 'uses' => 'PurchasesController@suppliers_list']);
+		Route::get('/compras/registro/suppliers_list', ['as'=>'show_list_suppliers', 'uses' => 'PurchasesController@suppliers_list']);
 
-	Route::get('/compras/registro/supplier/data/{id}', ['as'=>'load_supplier_data', 'uses' => 'PurchasesController@supplier_data']);
+		Route::get('/compras/registro/supplier/data/{id}', ['as'=>'load_supplier_data', 'uses' => 'PurchasesController@supplier_data']);
 
-	Route::get('/compras/registro/load/code/{code}', ['as'=>'load_code', 'uses' => 'PurchasesController@load_code']);
+		Route::get('/compras/registro/load/code/{code}', ['as'=>'load_code', 'uses' => 'PurchasesController@load_code']);
 
-	Route::get('/compras/registro/insert/article/{code}/{id}', ['as'=>'insert_article', 'uses' => 'PurchasesController@load_code']);
+		Route::get('/compras/registro/insert/article/{code}/{id}', ['as'=>'insert_article', 'uses' => 'PurchasesController@load_code']);
 
-	Route::post('/compras/registro/save/purchase/{json}/{id}/{document}/{number}', ['as'=>'save_purchase', 'uses' => 'PurchasesController@save_purchase']);
+		Route::post('/compras/registro/save/purchase/{json}/{id}/{document}/{number}', ['as'=>'save_purchase', 'uses' => 'PurchasesController@save_purchase']);
 
-	Route::get('/compras/historial',['as'=>'historial_compras','uses'=>'PurchasesController@purchases_list']);
+		Route::get('/compras/historial',['as'=>'historial_compras','uses'=>'PurchasesController@purchases_list']);
 
-	Route::get('/compras/historial/info/compra/{id}',['as'=>'info_compra','uses'=>'PurchasesController@purchase_info']);
+		Route::get('/compras/historial/info/compra/{id}',['as'=>'info_compra','uses'=>'PurchasesController@purchase_info']);
+	});
+
 
 	/**********************Ventas****************************/
 
@@ -125,6 +141,8 @@ Route::group( ['middleware' => 'auth' ], function() {
 	Route::patch('/clientes/editar/{id}',['as'=>'actualiza_cliente','uses'=>'ClientController@update_client']);
 
 	Route::get('/clientes/deudas/cliente/{id}',['as'=>'deudas_cliente','uses'=>'ClientController@client_debts']);
+
+	Route::get('/clientes/pagar/deudas/{id}',['as'=>'pagar_deuda','uses'=>'ClientController@pay_debt']);
 
 	/***********************Impresiones******************************/
 
