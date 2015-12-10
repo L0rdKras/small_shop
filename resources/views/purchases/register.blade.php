@@ -72,6 +72,14 @@
 				        </table>
 		            </div>
 		      </div>
+		      <div class="panel panel-default">
+		        	<div class="panel-heading">
+		              <h3 class="panel-title">Total Compra</h3>
+		            </div>
+		            <div class="panel-body">
+		            	<input type="text" readonly value="0" id="totalCompra">
+		            </div>
+		      </div>
 
 		    <div class="panel-body" id="save_area" style="display: none;">
 				{!! Form::open(array('route' => ['save_purchase'])) !!}
@@ -89,7 +97,7 @@
 {!! Form::close() !!}
 {!! Form::open(array('route' => ['insert_article',':CODE',':ID_ARTICLE'],'id'=>'form_insert','method'=>'POST')) !!}
 {!! Form::close() !!}
-{!! Form::open(array('route' => ['save_purchase',':JSON',':ID_SUPPLIER',':DOCUMENT',':NUMBER'],'id'=>'form_purchase','method'=>'POST')) !!}
+{!! Form::open(array('route' => ['save_purchase',':JSON',':ID_SUPPLIER',':DOCUMENT',':NUMBER',':TOTAL'],'id'=>'form_purchase','method'=>'POST')) !!}
 {!! Form::close() !!}
 {!! Form::open(array('route' => ['show_list_suppliers'],'id'=>'form_suppliers_list','method'=>'GET')) !!}
 {!! Form::close() !!}

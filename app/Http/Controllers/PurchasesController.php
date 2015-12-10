@@ -156,19 +156,20 @@ class PurchasesController extends Controller {
 		return Response::json(array('message' => "No se encontro el codigo"));
 	}
 
-	public function save_purchase($json,$id,$document,$number)
+	public function save_purchase($json,$id,$document,$number,$total)
 	{
 		//$data = Request::only('name');
 		$count = Purchase::where('supplier_id','=', $id)->where('document','=',$document)->where('number','=',$number)->count();
 
 		if($count == 0)
 		{
-			$data = array('number'=>$number,'document'=>$document,'supplier_id'=>$id);
+			$data = array('number'=>$number,'document'=>$document,'supplier_id'=>$id,'total'=>$total);
 
 			$rules = [
 				'number'=>'required',
 				'document'=>'required',
-				'supplier_id'=>'required'
+				'supplier_id'=>'required',
+				'total'=>'required'
 			];
 
 			$validation = \Validator::make($data,$rules);

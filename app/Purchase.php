@@ -7,7 +7,7 @@ class Purchase extends Model {
 	//
 	protected $table = 'purchases';
 
-	protected $fillable = ['number','document','supplier_id'];
+	protected $fillable = ['number','document','supplier_id','total'];
 
 	public function supplier()
 	{

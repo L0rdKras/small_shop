@@ -25,11 +25,11 @@ Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 
 // Registration routes...
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 Route::group( ['middleware' => 'auth' ], function() { 
 	Route::get('auth/logout', 'Auth\AuthController@getLogout');
-	Route::get('auth/register', 'Auth\AuthController@getRegister');
-	Route::post('auth/register', 'Auth\AuthController@postRegister');
 	//Rutas a proteger... 
 	Route::get('/', 'WelcomeController@index');
 
@@ -106,7 +106,7 @@ Route::group( ['middleware' => 'auth' ], function() {
 
 		Route::get('/compras/registro/insert/article/{code}/{id}', ['as'=>'insert_article', 'uses' => 'PurchasesController@load_code']);
 
-		Route::post('/compras/registro/save/purchase/{json}/{id}/{document}/{number}', ['as'=>'save_purchase', 'uses' => 'PurchasesController@save_purchase']);
+		Route::post('/compras/registro/save/purchase/{json}/{id}/{document}/{number}/{total}', ['as'=>'save_purchase', 'uses' => 'PurchasesController@save_purchase']);
 
 		Route::get('/compras/historial',['as'=>'historial_compras','uses'=>'PurchasesController@purchases_list']);
 

@@ -25,6 +25,7 @@ function function_delete_description(id)
 
 		fila.fadeOut("slow",function(){
 			fila.remove();
+			calcularTotal();
 			if($('#detalle_compra > tr').length == 0){
 				//oculta boton compra
 				$("#save_area").fadeOut();
@@ -122,6 +123,7 @@ function add_detalle(bar_code,datos)
 					var id_aux = id_global-1;
 						
 					function_delete_description(id_aux);
+					calcularTotal();
 					//}
 					if($('#detalle_compra > tr').length == 1){
 						muestra_boton_compra();
@@ -138,6 +140,22 @@ function muestra_boton_compra()
 	$("#save_area").fadeIn();
 }
 
+var calcularTotal = function(){
+	var sumatoria = 0;
+
+	$('#detalle_compra > tr').each(function(index){
+		//
+		var cantidad = $(this).data("cantidad");
+		
+		var precio = $(this).data("precio");
+
+		sumatoria += (cantidad*precio);
+
+	});
+
+	$("#totalCompra").val(sumatoria);
+}
+
 function function_guarda_compra()
 {
 	$("#btn_save_purchase").on("click",function(e){
@@ -146,6 +164,7 @@ function function_guarda_compra()
 		var supplier_id = $("#supplier_id").val();
 		var documento = $("#document").val();
 		var number = $("#number").val();
+		var total = $("#totalCompra").val();
 
 		var arreglo = [];
 
@@ -170,6 +189,7 @@ function function_guarda_compra()
 		url = url.replace(':ID_SUPPLIER',supplier_id);
 		url = url.replace(':DOCUMENT',documento);
 		url = url.replace(':NUMBER',number);
+		url = url.replace(':TOTAL',total);
 
 		var data = form.serialize();
 
