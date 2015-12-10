@@ -7,8 +7,7 @@
     	<div class="panel panel-default">
             <div class="panel-heading">
               <h3 class="panel-title">Deudas de {{ $client->name}}</h3>
-            </div>
-            
+            </div>    
         </div>
 
         <div class="panel panel-default">

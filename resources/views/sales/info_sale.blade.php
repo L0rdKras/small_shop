@@ -18,6 +18,10 @@
             		<span class="label label-default">Total : </span>
             		<span class="label label-primary">{{$sale->total}}</span>
             	</h3>
+                <h3>
+                    <span class="label label-default">Forma de Pago : </span>
+                    <span class="label label-primary">{{$sale->payment_method}}</span>
+                </h3>
             </div>
         </div>
 

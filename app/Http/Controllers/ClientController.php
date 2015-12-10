@@ -118,8 +118,13 @@ class ClientController extends Controller {
 	{
 		$debt = Debt::find($id);
 
-		return view('clients.debts_detail',compact('debt'));
-	}
+		$debt->status = "Pagada";
 
+		$debt->save();
+
+		$client = $debt->client;
+
+		return view('clients.debts_list',compact('client'));
+	}
 
 }
