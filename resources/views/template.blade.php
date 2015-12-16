@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>MiTiendaWAPP</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tebada</title>
 
-	<link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-	<link href="{{ asset('bootstrap/css/bootstrap-theme.css') }}" rel="stylesheet">
-	<link href="{{ asset('bootstrap/css/theme.css') }}" rel="stylesheet">
+  <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('bootstrap/css/bootstrap-theme.css') }}" rel="stylesheet">
+  <link href="{{ asset('bootstrap/css/theme.css') }}" rel="stylesheet">
 
-	<!-- Fonts -->
-	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+  <!-- Fonts -->
+  <link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
 
-	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-	<!--[if lt IE 9]>
-		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
 </head>
-<body role="document">
-	<nav class="navbar navbar-inverse navbar-fixed-top">
+<body role="document" style="background-color: pink;">
+  <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -30,7 +30,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">MiTiendaWAPP</a>
+          <a class="navbar-brand" href="#">Tebada</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -63,14 +63,15 @@
       </div>
     </nav>
 
-	@yield('content')
+  @yield('content')
 
-	<!-- Scripts -->
-	<!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
-	
-	<script src="{{ asset('bootstrap/js/bootstrap.js')}}"></script>
+  <!-- Scripts -->
+  <!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
   <script src="{{ asset('js/jquery-2.1.4.js')}}"></script>
+  
+  <script src="{{ asset('bootstrap/js/bootstrap.js')}}"></script>
 
-	@yield('scripts')
+  @yield('scripts')
 </body>
 </html>
+
