@@ -231,14 +231,32 @@ function function_guarda_venta()
 
 		var data = form.serialize();
 
-		$.post(url,data,function(result){
-			alert(result);
-			//console.log(result);
-			if(result == "Venta Guardada")
-			{
-				location.reload();
+		if(medio==="Credito"){
+			if(id_cliente.length>0 && id_cliente>0){
+				alert(id_cliente);
+				$.post(url,data,function(result){
+					alert(result);
+					//console.log(result);
+					if(result == "Venta Guardada")
+					{
+						location.reload();
+					}
+				});
+			}else{
+				alert("Debe indicar el cliente que esta comprando al credito");
 			}
-		});
+		}else{
+			
+			$.post(url,data,function(result){
+				alert(result);
+				//console.log(result);
+				if(result == "Venta Guardada")
+				{
+					location.reload();
+				}
+			});
+		}
+
 	});
 }
 
