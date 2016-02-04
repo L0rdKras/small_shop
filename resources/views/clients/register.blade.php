@@ -64,3 +64,10 @@
 
 
 @endsection
+
+@section('scripts')
+
+<script src="{{ asset('js/client_register.js')}}"></script>
+
+@endsection
+

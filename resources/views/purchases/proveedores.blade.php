@@ -59,3 +59,9 @@
 
 
 @endsection
+
+@section('scripts')
+
+<script src="{{ asset('js/suppliers_register.js')}}"></script>
+
+@endsection
