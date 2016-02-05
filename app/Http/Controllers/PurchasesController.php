@@ -71,6 +71,7 @@ class PurchasesController extends Controller {
 
 	public function save_supplier()
 	{
+		//die($request);
 		$data = Request::only('name','rut');
 
 		$rules = [
@@ -83,14 +84,24 @@ class PurchasesController extends Controller {
 
 		if($validation->passes())
 		{
-			$item = new Supplier($data);
+			$count = Supplier::where('rut','=', $data['rut'])->count();
 
-			$item->save();
+			if($count == 0)
+        	{
 
-			//return Redirect::back()->withInput()->withErrors($validation->messages());
-			return redirect()->back();
+				$item = new Supplier($data);
+
+				$item->save();
+
+				//return Redirect::back()->withInput()->withErrors($validation->messages());
+				//return redirect()->back();
+				return response()->json(["respuesta"=>"Guardado"]);
+			}
+			return response()->json(["respuesta"=>"Ese rut ya esta registrado"]);
 		}
-		return redirect()->back()->withInput()->withErrors($validation->messages());
+		return response()->json(["respuesta"=>"Falta completar información"]);
+
+		//return redirect()->back()->withInput()->withErrors($validation->messages());
 	}
 
 	public function edit_supplier($id)

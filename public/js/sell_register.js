@@ -233,7 +233,7 @@ function function_guarda_venta()
 
 		if(medio==="Credito"){
 			if(id_cliente.length>0 && id_cliente>0){
-				alert(id_cliente);
+				//alert(id_cliente);
 				$.post(url,data,function(result){
 					alert(result);
 					//console.log(result);

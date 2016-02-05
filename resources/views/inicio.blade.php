@@ -3,7 +3,8 @@
 @section('content')
 <div class="container theme-showcase" role="main">
 	<div class="jumbotron">
-        <img style="width 100%;" src="{{ asset('images/tebada.jpg') }}" alt="">
+        <h1>Sistema Tienda</h1>
+        <p>Administracion de ventas</p>
     </div>
 
     <div class="container marketing">
