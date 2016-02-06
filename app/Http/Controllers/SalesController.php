@@ -12,6 +12,8 @@ use App\Client;
 
 use App\Debt;
 
+use App\ArticleDescription;
+
 class SalesController extends Controller {
 
 	/*
@@ -47,7 +49,8 @@ class SalesController extends Controller {
 
 	public function sell()
 	{
-		return view('sales.vender');
+		$descriptions = ArticleDescription::all();
+		return view('sales.vender',compact('descriptions'));
 	}
 
 	public function save_sale($json,$total,$medio,$cliente)
@@ -124,6 +127,20 @@ class SalesController extends Controller {
 		$sale = Sale::find($id);
 
 		return view('sales.info_sale',compact('sale'));
+	}
+
+	public function load_article_list($id)
+	{
+		
+		$description = ArticleDescription::find($id);
+
+		$name = $description->name;
+
+		//return($description);
+
+		$data = view('sales.articles_list',compact('description','name'));
+
+		return ($data);
 	}
 
 	public function clients_list()

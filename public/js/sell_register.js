@@ -5,6 +5,9 @@ $(document).ready(function() {
     function_load_article();
     function_guarda_venta();
     selecciona_medio();
+    buscaPorDescripion();
+    //
+    searchForDescription();
 });
 
 function function_delete_description(id)
@@ -303,3 +306,43 @@ function client_selection()
 
 	});
 }
+
+var buscaPorDescripion = function(){
+	$("#btn_buscar_desc").on('click',function(e){
+		e.preventDefault();
+		verModalDescripciones();
+	});
+};
+
+var verModalDescripciones = function(){
+	//
+	$('#modal_busca_codigo').modal();
+};
+
+function searchForDescription()
+{
+	$("#confirmaBusquedaDescripcion").on('click',function(e){
+		e.preventDefault();
+		var idDescription = $("#descripcionBuscar").val();
+		var form = $("#form_for_descriptions");
+
+		var url = form.attr('action').replace(':ID',idDescription);
+
+		//console.log(url);
+
+		//var data = form.serialize();
+		$.get(url,function(result){
+			$("#ver_articulos").html(result);
+			
+		}).fail(function(){
+			alert("Ocurrio un error al intentar cargar la informacion");
+			$("#ver_articulos").html("");
+		});
+	});
+}
+
+var cargarCodigo = function(codigo)
+{
+	$("#bar_code").value(codigo);
+	//$modal.close();
+}; 

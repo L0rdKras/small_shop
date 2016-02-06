@@ -118,6 +118,8 @@ Route::group( ['middleware' => 'auth' ], function() {
 
 	Route::get('/ventas', ['as'=>'ventas', 'uses' => 'SalesController@index']);
 
+	Route::get('/ventas/guardar/load/articles/{id}', ['as'=>'load_list_articles', 'uses' => 'SalesController@load_article_list']);
+
 	Route::get('/ventas/emitir', ['as'=>'registro_ventas', 'uses' => 'SalesController@sell']);
 
 	Route::post('/ventas/guardar/{json}/{total}/{medio}/{cliente}', ['as'=>'save_sale', 'uses' => 'SalesController@save_sale']);
