@@ -1,7 +1,7 @@
 $(document).ready(function() {
-	guardarProv();
     enterRut();
     dejarRut();
+	guardarProv();
 });
 
 var enterRut = function(){
@@ -45,12 +45,12 @@ var consultarYGuardarProv = function(){
 
 	var data = form.serialize();
 
-	console.log(url);
-	console.log(data);
+	//console.log(url);
+	//console.log(data);
 
 	$.post(url,data,function(response){
 		//borrar los alert
-		console.log(response);
+		//console.log(response);
 		
 		var modalWindow = $('#modalTemplate').html();
 		if(response.respuesta==="Guardado"){

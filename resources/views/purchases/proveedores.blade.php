@@ -15,8 +15,8 @@
             <div class="panel-body">
 		    	{!! Form::open(array('route' => 'salva_proveedor','id'=>'formProv','method'=>'POST')) !!}
 		    	<h3>
-		    		{!! Form::label('rut', 'RUT',array('class' => 'label label-default', 'id'=>'rut')); !!}
-		    		{!! Form::text('rut'); !!}
+		    		{!! Form::label('rut', 'RUT',array('class' => 'label label-default')); !!}
+		    		{!! Form::text('rut','',array('id'=>'rut')); !!}
 		    		{!! Form::label('name', 'Nombre',array('class' => 'label label-default')); !!}
 		    		{!! Form::text('name'); !!}
 		    		{!! Form::submit('Guardar',array('class' => 'btn btn-lg btn-default','id'=>'btn_guardar_prov')); !!}

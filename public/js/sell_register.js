@@ -343,6 +343,7 @@ function searchForDescription()
 
 var cargarCodigo = function(codigo)
 {
-	$("#bar_code").value(codigo);
+	console.log("entro");
+	$("#bar_code").val(codigo);
 	//$modal.close();
 }; 
