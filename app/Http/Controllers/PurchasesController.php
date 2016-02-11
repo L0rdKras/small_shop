@@ -235,4 +235,37 @@ class PurchasesController extends Controller {
 		return view('purchases.info_purchase',compact('purchase'));
 	}
 
+	public function delete_purchase($id)
+	{
+		$purchase = Purchase::find($id);
+
+		//recorrer el detalle y remover el stock
+		//de los articulos comprados
+		//cuidar que el stock no se ainferior a 0
+		$detail = $purchase->purchasedetails;
+
+		foreach ($detail as $key => $value) {
+			$article = $value->article;
+
+			if(($article->stock - $value->quantity)<0)
+			{
+				return Response::json(array('message' => "No se puede eliminar esta compra","response"=>"error"));
+			}
+		}
+
+		foreach ($detail as $key => $value) {
+			$article = $value->article;
+
+			$article->modificar_stock('-',$value->quantity);
+
+			$article->save();
+
+			$value->delete();
+		}
+
+		$purchase->delete();
+
+		return Response::json(array('message' => "Compra eliminada","response"=>"ready"));
+	}
+
 }

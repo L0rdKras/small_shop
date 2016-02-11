@@ -25,8 +25,8 @@ Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 
 // Registration routes...
-Route::get('auth/register', 'Auth\AuthController@getRegister');
-Route::post('auth/register', 'Auth\AuthController@postRegister');
+//Route::get('auth/register', 'Auth\AuthController@getRegister');
+//Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 Route::group( ['middleware' => 'auth' ], function() { 
 	Route::get('auth/logout', 'Auth\AuthController@getLogout');
@@ -111,6 +111,8 @@ Route::group( ['middleware' => 'auth' ], function() {
 		Route::get('/compras/historial',['as'=>'historial_compras','uses'=>'PurchasesController@purchases_list']);
 
 		Route::get('/compras/historial/info/compra/{id}',['as'=>'info_compra','uses'=>'PurchasesController@purchase_info']);
+
+		Route::delete('/compras/historial/borra/compra/{id}',['as'=>'anula_compra','uses'=>'PurchasesController@delete_purchase']);
 	});
 
 

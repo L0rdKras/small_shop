@@ -36,9 +36,9 @@
 		                </td>
 		              </tr>
 		              @endforeach
+		        		{!! $sales->render() !!}
 		            </tbody>
 		        </table>
-		        {!! $sales->render() !!}
             </div>
         </div>
     </div>

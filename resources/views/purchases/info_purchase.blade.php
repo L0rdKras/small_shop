@@ -29,6 +29,10 @@
             		<span class="label label-default">Fecha Ingreso : </span>
             		<span class="label label-primary">{{date_format($purchase->created_at, 'd/m/Y')}}</span>
             	</h3>
+                <h3>
+                    <input type="hidden" value="{{$purchase->id}}" id="idCompra">
+                    <a id="btn_anular_compra" href="{{ route('anula_compra', [$purchase->id]) }}" class="btn btn-warning btn-lg">Anular</a>
+                </h3>
             </div>
         </div>
 
@@ -63,3 +67,14 @@
         </div>
     </div>
 </div>
+
+{!! Form::open(array('route' => ['anula_compra',':PURCHASE_ID'],'id'=>'form_delete','method'=>'DELETE')) !!}
+{!! Form::close() !!}
+
+@endsection
+
+@section('scripts')
+
+<script src="{{ asset('js/info_purchase.js')}}"></script>
+
+@endsection

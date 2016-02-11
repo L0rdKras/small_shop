@@ -20,6 +20,7 @@
 		              <tr>
 		                <th>C.I.</th>
 		                <th>Proveedor</th>
+		                <th>Documento</th>
 		                <th>Fecha</th>
 		                <th>Ver</th>
 		              </tr>
@@ -29,15 +30,16 @@
 		              <tr data-id="{{$purchase->id}}">
 		                <td>{{$purchase->id}}</td>
 		                <td>{{$purchase->supplier->name}}</td>
+		                <td>{{$purchase->document}}/{{$purchase->number}}</td>
 		                <td>{{date_format($purchase->created_at, 'd/m/Y')}}</td>
 		                <td>
 		                	<a class="btn btn-info" href="{{ route('info_compra', [$purchase->id]) }}">Ver</a>
 		                </td>
 		              </tr>
 		              @endforeach
+		        	{!! $purchases->render() !!}
 		            </tbody>
 		        </table>
-		        {!! $purchases->render() !!}
             </div>
         </div>
     </div>
