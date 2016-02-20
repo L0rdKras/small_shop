@@ -74,10 +74,11 @@
 			    		{!! Form::label('total_venta', 'Total Venta',array('class' => 'label label-default')); !!}
 	    				{!! Form::text('total_venta',null,array('id'=>'total_venta','readonly'=>'readonly')); !!}
 	    				{!! Form::label('medio_pago', 'Medio de Pago',array('class' => 'label label-default')); !!}
-	    				{!! Form::select('medio_pago', array('' => '','Efectivo'=>'Efectivo','Tarjeta'=>'Tarjeta','Credito'=>'Credito')); !!}
+	    				{!! Form::select('medio_pago', array('' => '','Efectivo'=>'Efectivo','Tarjeta'=>'Tarjeta','Credito'=>'Credito','Presupuesto'=>'Presupuesto')); !!}
 			    		{!! Form::submit('Guardar Venta',array('class' => 'btn btn-lg btn-default','id'=>'btn_save_sale')); !!}
 			    	</h3>
 				{!! Form::close() !!}
+
 		    </div>	        
     	</div>
     </div>
@@ -132,6 +133,8 @@
 {!! Form::open(array('route' => ['insert_article',':CODE',':ID_ARTICLE'],'id'=>'form_insert','method'=>'POST')) !!}
 {!! Form::close() !!}
 {!! Form::open(array('route' => ['save_sale',':JSON',':TOTAL',':MEDIO',':ID_CLIENT'],'id'=>'form_sale','method'=>'POST')) !!}
+{!! Form::close() !!}
+{!! Form::open(array('route' => ['save_budget',':JSON',':TOTAL',':MEDIO',':ID_CLIENT'],'id'=>'form_budget','method'=>'POST')) !!}
 {!! Form::close() !!}
 
 {!! Form::open(array('route' => ['show_list_clients'],'id'=>'form_clients_list','method'=>'GET')) !!}

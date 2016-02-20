@@ -25,8 +25,8 @@ Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
 
 // Registration routes...
-//Route::get('auth/register', 'Auth\AuthController@getRegister');
-//Route::post('auth/register', 'Auth\AuthController@postRegister');
+Route::get('auth/register', 'Auth\AuthController@getRegister');
+Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 Route::group( ['middleware' => 'auth' ], function() { 
 	Route::get('auth/logout', 'Auth\AuthController@getLogout');
@@ -133,6 +133,9 @@ Route::group( ['middleware' => 'auth' ], function() {
 	Route::get('ventas/ver/modal/clientes',['as'=>'show_list_clients','uses'=>'SalesController@clients_list']);
 
 	Route::get('ventas/ver/modal/data/cliente/{id}',['as'=>'load_data_client','uses'=>'SalesController@client_data']);
+
+	/***************************Presupuesto***************************************************/
+	Route::post('/ventas/guardar/presupuesto/{json}/{total}/{medio}/{cliente}', ['as'=>'save_budget', 'uses' => 'BudgetsController@store']);
 
 	/***************************Clientes*********************************************/
 

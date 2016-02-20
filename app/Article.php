@@ -29,6 +29,11 @@ class Article extends Model {
 		return $this->hasMany('App\SaleDetail');
 	}
 
+	public function budgetDetails()
+	{
+		return $this->hasMany('App\BudgetDetail');
+	}
+
 	public function firstBarcode()
 	{
 		$lista = $this->barrcodes;

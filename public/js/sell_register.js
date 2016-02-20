@@ -160,7 +160,7 @@ function muestra_boton_venta()
 function selecciona_medio()
 {
 	$("#medio_pago").on('change',function(){
-		if($(this).val() == "Credito")
+		if($(this).val() == "Credito" || $(this).val() == "Presupuesto")
 		{
 			//muesta boton seleccionar cliente
 			$("#save_area").append("<div id='cliente_venta'><button id='btn_busca_client' class='btn btn-lg btn-default'>Cliente</button></div>").promise().done(function(){
@@ -223,30 +223,49 @@ function function_guarda_venta()
 		//console.log(jsonString);
 
 		var form = $("#form_sale");
+		var form2 = $("#form_budget");
 
 		var url = form.attr('action').replace(':JSON',jsonString);
+		var url2 = form2.attr('action').replace(':JSON',jsonString);
 
 		url = url.replace(':TOTAL',total);
+		url2 = url2.replace(':TOTAL',total);
 
 		url = url.replace(':MEDIO',medio);
+		url2 = url2.replace(':MEDIO',medio);
 
 		url = url.replace(':ID_CLIENT',id_cliente);
+		url2 = url2.replace(':ID_CLIENT',id_cliente);
 
 		var data = form.serialize();
 
-		if(medio==="Credito"){
+		if(medio==="Credito" || medio==="Presupuesto"){
 			if(id_cliente.length>0 && id_cliente>0){
 				//alert(id_cliente);
-				$.post(url,data,function(result){
-					alert(result);
-					//console.log(result);
-					if(result == "Venta Guardada")
-					{
-						location.reload();
-					}
-				});
+				if(medio==="Credito")
+				{
+					//
+					$.post(url,data,function(result){
+						alert(result);
+						//console.log(result);
+						if(result == "Venta Guardada")
+						{
+							location.reload();
+						}
+					});
+				}else{
+					$.post(url2,data,function(result){
+						alert(result);
+						//console.log(result);
+						if(result == "Cotizacion Guardada")
+						{
+							location.reload();
+							//abrir ventana cotizacion
+						}
+					});
+				}
 			}else{
-				alert("Debe indicar el cliente que esta comprando al credito");
+				alert("Debe indicar el cliente");
 			}
 		}else{
 			
@@ -347,3 +366,5 @@ var cargarCodigo = function(codigo)
 	$("#bar_code").val(codigo);
 	//$modal.close();
 }; 
+
+//var presupuesto = function(){}
