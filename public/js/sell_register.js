@@ -254,15 +254,18 @@ function function_guarda_venta()
 						}
 					});
 				}else{
+					
 					$.post(url2,data,function(result){
-						alert(result);
+						//alert(result);
 						//console.log(result);
-						if(result == "Cotizacion Guardada")
+						if(result.respuesta == "Presupuesto Guardado")
 						{
 							location.reload();
 							//abrir ventana cotizacion
+						}else{
+							alert(result.respuesta);
 						}
-					});
+					},'json');
 				}
 			}else{
 				alert("Debe indicar el cliente");

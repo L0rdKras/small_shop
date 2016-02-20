@@ -84,17 +84,19 @@ class BudgetsController extends Controller {
 
 			}
 			
-			return "Cotizacion Guardada";
+			//return "Cotizacion Guardada";
+			return response()->json(["respuesta"=>"Presupuesto Guardado","id"=>$budget->id]);
 
 		}
-		return "No Valido";
+		//return "No Valido";
+		return response()->json(["respuesta"=>"No valido"]);
 	}
 
-	public function list()
+	public function Budgets_list()
 	{
-		$budget = Budget::orderBy('created_at','desc')->paginate(10);
+		/*$budget = Budget::orderBy('created_at','desc')->paginate(10);
 
-		return view('budget.list',compact('budget'));
+		return view('budget.list',compact('budget'));*/
 	}
 
 	/**
