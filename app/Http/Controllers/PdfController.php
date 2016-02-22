@@ -4,6 +4,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Sale;
+use App\Budget;
 
 use Illuminate\Http\Request;
 
@@ -87,6 +88,17 @@ class PdfController extends Controller {
 	{
 		$sale = Sale::find($id);
 		$view =  \View::make('pdf.venta',compact('sale'))->render();
+
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+
+        return $pdf->stream('inicio');
+	}
+
+	public function budget($id)
+	{
+		$budget = Budget::find($id);
+		$view =  \View::make('pdf.budget',compact('budget'))->render();
 
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);

@@ -85,7 +85,7 @@ class BudgetsController extends Controller {
 			}
 			
 			//return "Cotizacion Guardada";
-			return response()->json(["respuesta"=>"Presupuesto Guardado","id"=>$budget->id]);
+			return response()->json(["respuesta"=>"Presupuesto Guardado","idBudget"=>$budget->id]);
 
 		}
 		//return "No Valido";
@@ -94,9 +94,9 @@ class BudgetsController extends Controller {
 
 	public function Budgets_list()
 	{
-		/*$budget = Budget::orderBy('created_at','desc')->paginate(10);
+		$budgets = Budget::orderBy('created_at','desc')->paginate(10);
 
-		return view('budget.list',compact('budget'));*/
+		return view('budgets.list',compact('budgets'));
 	}
 
 	/**
@@ -107,7 +107,9 @@ class BudgetsController extends Controller {
 	 */
 	public function show($id)
 	{
-		//
+		$budget = Budget::find($id);
+
+		return view('budgets.info',compact('budget'));
 	}
 
 	/**

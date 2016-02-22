@@ -224,6 +224,7 @@ function function_guarda_venta()
 
 		var form = $("#form_sale");
 		var form2 = $("#form_budget");
+		var formPrintBudget = $("#form_printBudget");
 
 		var url = form.attr('action').replace(':JSON',jsonString);
 		var url2 = form2.attr('action').replace(':JSON',jsonString);
@@ -260,6 +261,8 @@ function function_guarda_venta()
 						//console.log(result);
 						if(result.respuesta == "Presupuesto Guardado")
 						{
+							var urlPrint = formPrintBudget.attr('action').replace(':ID',result.idBudget);
+							window.open(urlPrint);
 							location.reload();
 							//abrir ventana cotizacion
 						}else{

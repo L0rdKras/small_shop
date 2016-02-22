@@ -136,6 +136,9 @@ Route::group( ['middleware' => 'auth' ], function() {
 
 	/***************************Presupuesto***************************************************/
 	Route::post('/ventas/guardar/presupuesto/{json}/{total}/{medio}/{cliente}', ['as'=>'save_budget', 'uses' => 'BudgetsController@store']);
+	Route::get('/ventas/imprime/presupuesto/{id}', ['as'=>'print_budget', 'uses' => 'PdfController@budget']);
+	Route::get('/ventas/listado/presupuesto', ['as'=>'ver_presupuestos', 'uses' => 'BudgetsController@Budgets_list']);
+	Route::get('/ventas/ver/presupuesto/{id}', ['as'=>'info_budget', 'uses' => 'BudgetsController@show']);
 
 	/***************************Clientes*********************************************/
 

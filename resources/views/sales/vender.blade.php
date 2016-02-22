@@ -136,6 +136,8 @@
 {!! Form::close() !!}
 {!! Form::open(array('route' => ['save_budget',':JSON',':TOTAL',':MEDIO',':ID_CLIENT'],'id'=>'form_budget','method'=>'POST')) !!}
 {!! Form::close() !!}
+{!! Form::open(array('route' => ['print_budget',':ID'],'id'=>'form_printBudget','method'=>'GET')) !!}
+{!! Form::close() !!}
 
 {!! Form::open(array('route' => ['show_list_clients'],'id'=>'form_clients_list','method'=>'GET')) !!}
 {!! Form::close() !!}

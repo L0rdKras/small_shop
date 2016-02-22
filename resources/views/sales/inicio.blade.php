@@ -17,6 +17,7 @@
 	            <a href="{{route('registro_cliente')}}" class="list-group-item">Registro Clientes</a>
 	            <a href="{{route('registro_ventas')}}" class="list-group-item">Registro Ventas</a>
 	            <a href="{{route('historial_ventas')}}" class="list-group-item">Historial Ventas</a>
+	            <a href="{{route('ver_presupuestos')}}" class="list-group-item">Presupuestos</a>
 	            	            
 	          </div>
 	        </div><!-- /.col-sm-4 -->
