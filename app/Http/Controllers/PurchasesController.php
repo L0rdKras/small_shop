@@ -72,7 +72,7 @@ class PurchasesController extends Controller {
 	public function save_supplier()
 	{
 		//die($request);
-		$data = Request::only('name','rut');
+		$data = Request::only('name','rut','phone');
 
 		$rules = [
 			'name' => 'required',
@@ -113,7 +113,7 @@ class PurchasesController extends Controller {
 
 	public function update_supplier($id)
 	{
-		$data = Request::only('rut','name');
+		$data = Request::only('rut','name','phone');
 
 		$rules = [
 			'rut' => 'required',
@@ -129,6 +129,8 @@ class PurchasesController extends Controller {
 			$item->name = $data['name'];
 
 			$item->rut = $data['rut'];
+
+			$item->rut = $data['phone'];
 
 			$item->save();
 

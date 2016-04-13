@@ -18,6 +18,10 @@
 		    		{!! Form::text('rut',$supplier->rut); !!}
 		    		{!! Form::label('name', 'Nombre',array('class' => 'label label-default')); !!}
 		    		{!! Form::text('name',$supplier->name); !!}
+		    	</h3>
+		    	<h3>
+		    		{!! Form::label('phone', 'Telefono',array('class' => 'label label-default')); !!}
+		    		{!! Form::text('phone',$supplier->phone); !!}
 		    		{!! Form::submit('Guardar',array('class' => 'btn btn-lg btn-default')); !!}
 		    	</h3>
 				{!! Form::close() !!}

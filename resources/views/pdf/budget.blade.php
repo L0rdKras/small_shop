@@ -1,16 +1,20 @@
 @extends('print_template')
 
 @section('content')
-<div class="" style="font-size:7 px" role="main">
+<div class="" style="font-size:10px" role="main">
 	
         <h3>Presupuesto N° {{$budget->id}}</h3>
     
-    <div class="">
+    <div style="padding: 0px; margin: 0px;">
         <div class="">
             <b class="">Datos Presupuesto</b>
         </div>
-            <div class="">
-              
+            <div style="padding: 0px; margin: 0px;">
+            <p>
+	            <b>
+	            	Cliente : {{$budget->client->name}}
+	            </b>
+            </p>
               <b>
                Fecha Ingreso : {{date_format($budget->created_at, 'd/m/Y')}}
               </b>
@@ -22,15 +26,14 @@
 
         <div class="">
           <div class="">
-              <b class="">Articulos Vendidos</b>
+              <b class="">Articulos Presupuestados</b>
             </div>
-            <div class="">
-              <table border="1" class="">
+            <div style="width:200px">
+              <table border="1" style="font-size:7px; width:100%">
                 <thead>
                   <tr>
-                    <th></th>
                     <th>Descripcion</th>
-                    <th>Detalle</th>
+                    
                     <th>Cantidad</th>
                     <th>P.Unitario</th>
                     <th>Subtotal</th>
@@ -39,8 +42,7 @@
                   @foreach($budget->budgetDetails as $saledetail)
                 <tbody>
                     <tr>
-                      <td>{{$saledetail->article->article_description->name}}</td>
-                      <td>{{$saledetail->article->details}}</td>
+                      <td>{{$saledetail->article->article_description->name}} {{$saledetail->article->details}}</td>
                       <td>{{$saledetail->quantity}}</td>
                       <td>{{$saledetail->unit_price()}}</td>
                       <td>{{$saledetail->subtotal}}</td>

@@ -17,6 +17,7 @@ class CreateSuppliersTable extends Migration {
 			$table->increments('id');
 			$table->string('rut')->unique();
 			$table->string('name');
+			$table->string('phone');
 			$table->timestamps();
 		});
 	}

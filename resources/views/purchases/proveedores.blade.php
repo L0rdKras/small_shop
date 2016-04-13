@@ -12,13 +12,17 @@
             <div class="panel-heading">
               <h3 class="panel-title">Crear proveedor</h3>
             </div>
-            <div class="panel-body">
+            <div class="panel-body row">
 		    	{!! Form::open(array('route' => 'salva_proveedor','id'=>'formProv','method'=>'POST')) !!}
 		    	<h3>
-		    		{!! Form::label('rut', 'RUT',array('class' => 'label label-default')); !!}
-		    		{!! Form::text('rut','',array('id'=>'rut')); !!}
-		    		{!! Form::label('name', 'Nombre',array('class' => 'label label-default')); !!}
-		    		{!! Form::text('name'); !!}
+		    		{!! Form::label('rut', 'RUT',array('class' => 'label label-default col-md-2')); !!}
+		    		{!! Form::text('rut','',array('id'=>'rut','class'=>'col-md-2')); !!}
+		    		{!! Form::label('name', 'Nombre',array('class' => 'label label-default col-md-2')); !!}
+		    		{!! Form::text('name','',array('id'=>'name','class'=>'col-md-2')); !!}
+		    		{!! Form::label('phone', 'Telefono',array('class' => 'label label-default col-md-2')); !!}
+		    		{!! Form::text('phone','',array('id'=>'phone','class'=>'col-md-2')); !!}
+		    	</h3>
+		    	<h3>
 		    		{!! Form::submit('Guardar',array('class' => 'btn btn-lg btn-default','id'=>'btn_guardar_prov')); !!}
 		    	</h3>
 				{!! Form::close() !!}
@@ -36,6 +40,7 @@
 		                <th>C.I.</th>
 		                <th>RUT</th>
 		                <th>Nombre</th>
+		                <th>Telefono</th>
 		                <th>Edición</th>
 		              </tr>
 		            </thead>
@@ -45,6 +50,7 @@
 		                <td>{{$supplier->id}}</td>
 		                <td>{{$supplier->rut}}</td>
 		                <td>{{$supplier->name}}</td>
+		                <td>{{$supplier->phone}}</td>
 		                <td>
 		                	<a class="btn btn-info" href="{{ route('editar_proveedor', [$supplier->id]) }}">Editar</a>		                	
 		                </td>
