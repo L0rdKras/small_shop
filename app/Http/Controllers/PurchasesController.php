@@ -71,7 +71,8 @@ class PurchasesController extends Controller {
 
 	public function save_supplier()
 	{
-		$data = Request::only('name','rut');
+		//die($request);
+		$data = Request::only('name','rut','phone');
 
 		$rules = [
 			'name' => 'required',
@@ -83,14 +84,24 @@ class PurchasesController extends Controller {
 
 		if($validation->passes())
 		{
-			$item = new Supplier($data);
+			$count = Supplier::where('rut','=', $data['rut'])->count();
 
-			$item->save();
+			if($count == 0)
+        	{
 
-			//return Redirect::back()->withInput()->withErrors($validation->messages());
-			return redirect()->back();
+				$item = new Supplier($data);
+
+				$item->save();
+
+				//return Redirect::back()->withInput()->withErrors($validation->messages());
+				//return redirect()->back();
+				return response()->json(["respuesta"=>"Guardado"]);
+			}
+			return response()->json(["respuesta"=>"Ese rut ya esta registrado"]);
 		}
-		return redirect()->back()->withInput()->withErrors($validation->messages());
+		return response()->json(["respuesta"=>"Falta completar información"]);
+
+		//return redirect()->back()->withInput()->withErrors($validation->messages());
 	}
 
 	public function edit_supplier($id)
@@ -102,7 +113,7 @@ class PurchasesController extends Controller {
 
 	public function update_supplier($id)
 	{
-		$data = Request::only('rut','name');
+		$data = Request::only('rut','name','phone');
 
 		$rules = [
 			'rut' => 'required',
@@ -118,6 +129,8 @@ class PurchasesController extends Controller {
 			$item->name = $data['name'];
 
 			$item->rut = $data['rut'];
+
+			$item->rut = $data['phone'];
 
 			$item->save();
 
@@ -222,6 +235,39 @@ class PurchasesController extends Controller {
 		$purchase = Purchase::find($id);
 
 		return view('purchases.info_purchase',compact('purchase'));
+	}
+
+	public function delete_purchase($id)
+	{
+		$purchase = Purchase::find($id);
+
+		//recorrer el detalle y remover el stock
+		//de los articulos comprados
+		//cuidar que el stock no se ainferior a 0
+		$detail = $purchase->purchasedetails;
+
+		foreach ($detail as $key => $value) {
+			$article = $value->article;
+
+			if(($article->stock - $value->quantity)<0)
+			{
+				return Response::json(array('message' => "No se puede eliminar esta compra","response"=>"error"));
+			}
+		}
+
+		foreach ($detail as $key => $value) {
+			$article = $value->article;
+
+			$article->modificar_stock('-',$value->quantity);
+
+			$article->save();
+
+			$value->delete();
+		}
+
+		$purchase->delete();
+
+		return Response::json(array('message' => "Compra eliminada","response"=>"ready"));
 	}
 
 }

@@ -29,6 +29,20 @@ class Article extends Model {
 		return $this->hasMany('App\SaleDetail');
 	}
 
+	public function budgetDetails()
+	{
+		return $this->hasMany('App\BudgetDetail');
+	}
+
+	public function firstBarcode()
+	{
+		$lista = $this->barrcodes;
+		foreach ($lista as $key => $value) {
+			return $value->code;
+		}
+		return "0";		
+	}
+
 	public function modificar_stock($operator,$quantity)
 	{
 		if($operator == "+")

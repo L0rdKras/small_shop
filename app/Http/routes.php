@@ -111,12 +111,16 @@ Route::group( ['middleware' => 'auth' ], function() {
 		Route::get('/compras/historial',['as'=>'historial_compras','uses'=>'PurchasesController@purchases_list']);
 
 		Route::get('/compras/historial/info/compra/{id}',['as'=>'info_compra','uses'=>'PurchasesController@purchase_info']);
+
+		Route::delete('/compras/historial/borra/compra/{id}',['as'=>'anula_compra','uses'=>'PurchasesController@delete_purchase']);
 	});
 
 
 	/**********************Ventas****************************/
 
 	Route::get('/ventas', ['as'=>'ventas', 'uses' => 'SalesController@index']);
+
+	Route::get('/ventas/guardar/load/articles/{id}', ['as'=>'load_list_articles', 'uses' => 'SalesController@load_article_list']);
 
 	Route::get('/ventas/emitir', ['as'=>'registro_ventas', 'uses' => 'SalesController@sell']);
 
@@ -129,6 +133,12 @@ Route::group( ['middleware' => 'auth' ], function() {
 	Route::get('ventas/ver/modal/clientes',['as'=>'show_list_clients','uses'=>'SalesController@clients_list']);
 
 	Route::get('ventas/ver/modal/data/cliente/{id}',['as'=>'load_data_client','uses'=>'SalesController@client_data']);
+
+	/***************************Presupuesto***************************************************/
+	Route::post('/ventas/guardar/presupuesto/{json}/{total}/{medio}/{cliente}', ['as'=>'save_budget', 'uses' => 'BudgetsController@store']);
+	Route::get('/ventas/imprime/presupuesto/{id}', ['as'=>'print_budget', 'uses' => 'PdfController@budget']);
+	Route::get('/ventas/listado/presupuesto', ['as'=>'ver_presupuestos', 'uses' => 'BudgetsController@Budgets_list']);
+	Route::get('/ventas/ver/presupuesto/{id}', ['as'=>'info_budget', 'uses' => 'BudgetsController@show']);
 
 	/***************************Clientes*********************************************/
 

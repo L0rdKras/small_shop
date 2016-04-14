@@ -127,7 +127,7 @@ class ArticlesController extends Controller {
 		//
 		$descriptions = ArticleDescription::orderBy('name')->get()->lists('name','id');
 
-		$articles = Article::all();
+		$articles = Article::paginate(10);
 
 		return view('articles.create_articles',compact('descriptions','articles'));
 	}

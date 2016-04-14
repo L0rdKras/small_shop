@@ -7,7 +7,7 @@ class Supplier extends Model {
 	//
 	protected $table = 'suppliers';
 
-	protected $fillable = ['rut','name'];
+	protected $fillable = ['rut','name','phone'];
 
 	public function purchases()
 	{

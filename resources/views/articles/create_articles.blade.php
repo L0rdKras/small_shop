@@ -65,6 +65,7 @@
 		                </td>
 		              </tr>
 		              @endforeach
+		              {!! $articles->render() !!}
 		            </tbody>
 		        </table>
             </div>

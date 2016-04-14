@@ -35,8 +35,9 @@
 			    		{!! Form::label('code', 'Codigo',array('class' => 'label label-default')); !!}
 			    		{!! Form::text('code',null,array('id'=>'bar_code')); !!}
 			    		{!! Form::submit('Cargar',array('class' => 'btn btn-lg btn-default','id'=>'btn_load_code')); !!}
-			    	</h3>
 					{!! Form::close() !!}
+					<button id="btn_buscar_desc" class="btn btn-lg btn-default">Buscar</button>
+			    	</h3>
 		        </div>
 		        <div id="datos_articulo"></div>
 		    </div>
@@ -73,20 +74,69 @@
 			    		{!! Form::label('total_venta', 'Total Venta',array('class' => 'label label-default')); !!}
 	    				{!! Form::text('total_venta',null,array('id'=>'total_venta','readonly'=>'readonly')); !!}
 	    				{!! Form::label('medio_pago', 'Medio de Pago',array('class' => 'label label-default')); !!}
-	    				{!! Form::select('medio_pago', array('' => '','Efectivo'=>'Efectivo','Tarjeta'=>'Tarjeta','Credito'=>'Credito')); !!}
+	    				{!! Form::select('medio_pago', array('' => '','Efectivo'=>'Efectivo','Tarjeta'=>'Tarjeta','Credito'=>'Credito','Presupuesto'=>'Presupuesto')); !!}
 			    		{!! Form::submit('Guardar Venta',array('class' => 'btn btn-lg btn-default','id'=>'btn_save_sale')); !!}
 			    	</h3>
 				{!! Form::close() !!}
+
 		    </div>	        
     	</div>
     </div>
 </div>
 
+
+	<div class="modal fade" id="modal_busca_codigo">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	        <h4 class="modal-title">Busca Articulo</h4>
+	      </div>
+	      <div class="modal-body">
+	        <h4>
+	        	<select name="descripcionBuscar" id="descripcionBuscar">
+	        		<option value=""></option>
+	        		@foreach($descriptions as $description)
+		              <option value="{{$description->id}}">{{$description->name}}</option>
+		            @endforeach
+	        	</select>
+	        	<button class="btn btn-lg btn-default" id="confirmaBusquedaDescripcion">Buscar</button>
+	        </h4>
+	      </div>
+	      <div class="modal-body" style="height:300px; overflow:auto" id="ver_articulos">
+	        <table class="table table-striped">
+	            <thead>
+	              <tr>
+	                <th>Articulo</th>
+	                <th>Descripcion</th>
+	                <th>Precio</th>
+	                <th>Stock</th>
+	                <th>Cargar</th>
+	              </tr>
+	            </thead>
+	            
+	        </table>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+	        
+	      </div>
+	    </div><!-- /.modal-content -->
+	  </div><!-- /.modal-dialog -->
+	</div>
+
+
 {!! Form::open(array('route' => ['load_code',':CODE'],'id'=>'form_load','method'=>'GET')) !!}
+{!! Form::close() !!}
+{!! Form::open(array('route' => ['load_list_articles',':ID'],'id'=>'form_for_descriptions','method'=>'GET')) !!}
 {!! Form::close() !!}
 {!! Form::open(array('route' => ['insert_article',':CODE',':ID_ARTICLE'],'id'=>'form_insert','method'=>'POST')) !!}
 {!! Form::close() !!}
 {!! Form::open(array('route' => ['save_sale',':JSON',':TOTAL',':MEDIO',':ID_CLIENT'],'id'=>'form_sale','method'=>'POST')) !!}
+{!! Form::close() !!}
+{!! Form::open(array('route' => ['save_budget',':JSON',':TOTAL',':MEDIO',':ID_CLIENT'],'id'=>'form_budget','method'=>'POST')) !!}
+{!! Form::close() !!}
+{!! Form::open(array('route' => ['print_budget',':ID'],'id'=>'form_printBudget','method'=>'GET')) !!}
 {!! Form::close() !!}
 
 {!! Form::open(array('route' => ['show_list_clients'],'id'=>'form_clients_list','method'=>'GET')) !!}
