@@ -65,20 +65,20 @@
 
   @yield('content')
 
-<<<<<<< HEAD
+
   <!-- Scripts -->
   <!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
   <script src="{{ asset('js/jquery-2.1.4.js')}}"></script>
   
   <script src="{{ asset('bootstrap/js/bootstrap.js')}}"></script>
-=======
+
 	<!-- Scripts -->
 	<!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
 	
   <script src="{{ asset('js/jquery-2.1.4.js')}}"></script>
   <script src="{{ asset('bootstrap/js/bootstrap.js')}}"></script>
   <script src="{{ asset('js/rut.js')}}"></script>
->>>>>>> master
+
 
   @yield('scripts')
 </body>
