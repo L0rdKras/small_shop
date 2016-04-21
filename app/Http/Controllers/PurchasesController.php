@@ -130,7 +130,7 @@ class PurchasesController extends Controller {
 
 			$item->rut = $data['rut'];
 
-			$item->rut = $data['phone'];
+			$item->phone = $data['phone'];
 
 			$item->save();
 
