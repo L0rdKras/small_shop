@@ -38,6 +38,14 @@
             <li><a href="{{route('articulos')}}">Articulos</a></li>
             <li><a href="{{route('compras')}}">Compras</a></li>
             <li><a href="{{route('ventas')}}">Ventas</a></li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Caja <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Ver</a></li>
+                <li><a href="#">Cierre</a></li>
+              </ul>
+            </li>
+            <li><a href="">Reportes</a></li>
             <?php
             if (Auth::guest()){
               //
