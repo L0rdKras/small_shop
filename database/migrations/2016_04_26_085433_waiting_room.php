@@ -12,8 +12,9 @@ class WaitingRoom extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('waiting_room', function (Blueprint $table) {
+		Schema::create('waiting_rooms', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('status');
             $table->integer('sale_id');
             $table->timestamps();
 
@@ -28,7 +29,7 @@ class WaitingRoom extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('waiting_room');
+		Schema::drop('waiting_rooms');
 	}
 
 }

@@ -124,7 +124,7 @@ Route::group( ['middleware' => 'auth' ], function() {
 
 	Route::get('/ventas/emitir', ['as'=>'registro_ventas', 'uses' => 'SalesController@sell']);
 
-	Route::post('/ventas/guardar/{json}/{total}/{medio}/{cliente}', ['as'=>'save_sale', 'uses' => 'SalesController@save_sale']);
+	Route::post('/ventas/guardar/{json}/{total}', ['as'=>'save_sale', 'uses' => 'SalesController@save_sale']);
 
 	Route::get('/ventas/historial',['as'=>'historial_ventas','uses'=>'SalesController@sales_list']);
 

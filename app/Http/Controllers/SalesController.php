@@ -14,6 +14,8 @@ use App\Debt;
 
 use App\ArticleDescription;
 
+use App\WaitingRoom;
+
 class SalesController extends Controller {
 
 	/*
@@ -53,28 +55,28 @@ class SalesController extends Controller {
 		return view('sales.vender',compact('descriptions'));
 	}
 
-	public function save_sale($json,$total,$medio,$cliente)
+	public function save_sale($json,$total)
 	{
 		//$data = Request::only('name');
 
 		$data = [
 			'total'=>$total,
-			'payment_method'=>$medio,
-			'client_id'=>$cliente
+			//'payment_method'=>$medio,
+			//'client_id'=>$cliente
 			];
 
 		$rules = [
 			'total'=>'required',
-			'payment_method'=>'required'
+			//'payment_method'=>'required'
 		];
 
 		$validation = \Validator::make($data,$rules);
 
 		if($validation->passes())
 		{
-			if($data['client_id'] == 0){
+			/*if($data['client_id'] == 0){
 				$data['client_id'] = null;
-			}
+			}*/
 			$sale = new Sale($data);
 
 			$sale->save();
@@ -97,16 +99,25 @@ class SalesController extends Controller {
 				$article->save();
 			}
 
+			$dataWaiting = [
+			'status'=>'Pendiente',
+			'sale_id'=>$sale->id;
+			];
+
+			$waiting = new WaitingRoom($dataWaiting);
+
+			$waiting->save();
+
 			//si es credito, crear deuda
 
-			if($medio == "Credito"){
+			/*if($medio == "Credito"){
 				$today = date("Y-m-d");
 				$data_deuda = array('expiration'=>$today,'total'=>$total,'client_id'=>$cliente,'sale_id'=>$sale->id);
 
 				$debt = new Debt($data_deuda);
 
 				$debt->save();
-			}
+			}*/
 			
 			return "Venta Guardada";
 

@@ -4,7 +4,7 @@ $(document).ready(function() {
     function_delete_description();
     function_load_article();
     function_guarda_venta();
-    selecciona_medio();
+    //selecciona_medio();
     buscaPorDescripion();
     //
     searchForDescription();
@@ -151,9 +151,9 @@ function add_detalle(bar_code,datos)
 
 function muestra_boton_venta()
 {
-	$("#medio_pago").val("");
-	$("#id_client_sell").val("0");
-	$("#cliente_venta").remove();
+	//$("#medio_pago").val("");
+	//$("#id_client_sell").val("0");
+	//$("#cliente_venta").remove();
 	$("#save_area").fadeIn('slow');
 }
 
@@ -216,31 +216,31 @@ function function_guarda_venta()
 
 		var total = $("#total_venta").val();
 
-		var medio = $("#medio_pago").val();
+		//var medio = $("#medio_pago").val();
 
-		var id_cliente = $("#id_client_sell").val();
+		//var id_cliente = $("#id_client_sell").val();
 
 		//console.log(jsonString);
 
 		var form = $("#form_sale");
-		var form2 = $("#form_budget");
-		var formPrintBudget = $("#form_printBudget");
+		//var form2 = $("#form_budget");
+		//var formPrintBudget = $("#form_printBudget");
 
 		var url = form.attr('action').replace(':JSON',jsonString);
-		var url2 = form2.attr('action').replace(':JSON',jsonString);
+		//var url2 = form2.attr('action').replace(':JSON',jsonString);
 
 		url = url.replace(':TOTAL',total);
-		url2 = url2.replace(':TOTAL',total);
+		//url2 = url2.replace(':TOTAL',total);
 
-		url = url.replace(':MEDIO',medio);
-		url2 = url2.replace(':MEDIO',medio);
+		//url = url.replace(':MEDIO',medio);
+		//url2 = url2.replace(':MEDIO',medio);
 
-		url = url.replace(':ID_CLIENT',id_cliente);
-		url2 = url2.replace(':ID_CLIENT',id_cliente);
+		//url = url.replace(':ID_CLIENT',id_cliente);
+		//url2 = url2.replace(':ID_CLIENT',id_cliente);
 
 		var data = form.serialize();
 
-		if(medio==="Credito" || medio==="Presupuesto"){
+		/*if(medio==="Credito" || medio==="Presupuesto"){
 			if(id_cliente.length>0 && id_cliente>0){
 				//alert(id_cliente);
 				if(medio==="Credito")
@@ -273,17 +273,19 @@ function function_guarda_venta()
 			}else{
 				alert("Debe indicar el cliente");
 			}
-		}else{
+		}else{*/
+
+			console.log(url);
 			
-			$.post(url,data,function(result){
-				alert(result);
-				//console.log(result);
-				if(result == "Venta Guardada")
-				{
-					location.reload();
-				}
-			});
-		}
+		$.post(url,data,function(result){
+			alert(result);
+			//console.log(result);
+			if(result == "Venta Guardada")
+			{
+				location.reload();
+			}
+		});
+		//}
 
 	});
 }
