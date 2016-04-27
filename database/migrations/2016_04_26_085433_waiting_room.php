@@ -15,7 +15,7 @@ class WaitingRoom extends Migration {
 		Schema::create('waiting_rooms', function (Blueprint $table) {
             $table->increments('id');
             $table->string('status');
-            $table->integer('sale_id');
+            $table->integer('sale_id')->unsigned();
             $table->timestamps();
 
             $table->foreign('sale_id')->references('id')->on('sales');

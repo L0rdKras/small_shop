@@ -6,9 +6,9 @@ class WaitingRoom extends Model {
 
 	protected $table = 'waiting_rooms';
 
-	protected $fillable = ['status','sales_id'];
+	protected $fillable = ['status','sale_id'];
 
 	public function Sale(){
-		return $this->belongsTo('App\Sales');
+		return $this->belongsTo('App\Sale');
 	}
 }

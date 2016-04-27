@@ -99,10 +99,7 @@ class SalesController extends Controller {
 				$article->save();
 			}
 
-			$dataWaiting = [
-			'status'=>'Pendiente',
-			'sale_id'=>$sale->id;
-			];
+			$dataWaiting = ['status'=>'Pendiente','sale_id'=>$sale->id];
 
 			$waiting = new WaitingRoom($dataWaiting);
 
