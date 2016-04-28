@@ -16,6 +16,8 @@ class CreateDeskDetailsTable extends Migration {
 		{
 			$table->increments('id');
 			$table->string('paymenth_method');
+			$table->string('document_type');
+			$table->integer('ticket');
 			$table->integer('sale_id')->unsigned();
 			$table->integer('cash_desk_id')->unsigned();
 			$table->timestamps();

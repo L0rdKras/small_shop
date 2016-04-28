@@ -134,6 +134,8 @@ Route::group( ['middleware' => 'auth' ], function() {
 
 	Route::get('ventas/ver/modal/data/cliente/{id}',['as'=>'load_data_client','uses'=>'SalesController@client_data']);
 
+	Route::get('data/venta/{id}',['as'=>'data-sale','uses'=>'SalesController@dataById']);
+
 	/***************************Presupuesto***************************************************/
 	Route::post('/ventas/guardar/presupuesto/{json}/{total}/{medio}/{cliente}', ['as'=>'save_budget', 'uses' => 'BudgetsController@store']);
 	Route::get('/ventas/imprime/presupuesto/{id}', ['as'=>'print_budget', 'uses' => 'PdfController@budget']);
@@ -157,4 +159,8 @@ Route::group( ['middleware' => 'auth' ], function() {
 	/***********************Impresiones******************************/
 
 	Route::get('/impresion/venta/{id}',['as'=>'imp_venta','uses'=>'PdfController@sale']);	
-} );
+
+	/***Caja****/
+
+	Route::get('/caja',['as'=>'caja','uses'=>'CashDeskController@index']);
+} );Route::post('caja/save/detail',['as'=>'save-detail-caja','uses'=>'CashDeskController@saveDetail']);

@@ -182,4 +182,10 @@ class SalesController extends Controller {
 		return ($json);
 	}
 
+	public function dataById($id){
+		$sale = Sale::find($id);
+
+		return response()->json($sale);
+	}
+
 }
