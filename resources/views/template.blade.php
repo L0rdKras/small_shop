@@ -43,7 +43,7 @@
               <ul class="dropdown-menu">
                 <li><a href="{{route('caja')}}">Ventas en espera</a></li>
                 <li><a href="{{route('emitidos-caja')}}">Ventas emitidas</a></li>
-                <li><a href="#">Cierre Caja</a></li>
+                <li><a href="{{route('close-cash-desk')}}">Cierre Caja</a></li>
               </ul>
             </li>
             <li><a href="">Reportes</a></li>

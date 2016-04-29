@@ -6,7 +6,7 @@ class CashDesk extends Model {
 
 	protected $table = 'cash_desks';
 
-	protected $fillable = ['status'];
+	protected $fillable = ['status','total'];
 
 	public function User(){
 		return $this->belongsTo('App\User');

@@ -219,6 +219,7 @@ class CashDeskController extends Controller {
 
 		$efectivo = $cashDesk->DeskDetail->where('payment_method','Efectivo');
 		$credito = $cashDesk->DeskDetail->where('payment_method','Credito');
+		$tarjeta = $cashDesk->DeskDetail->where('payment_method','Tarjeta');
 
 		$sumCash = 0;
 
@@ -232,9 +233,36 @@ class CashDeskController extends Controller {
 			$sumCredit+=$venta->Sale->total;
 		}
 
-		return $sumCash." ".$sumCredit;
+		$sumCreditCard = 0;
 
-		return view('cashDesk.issued',compact('cashDesk'));
+		foreach ($tarjeta as $venta) {
+			$sumCreditCard+=$venta->Sale->total;
+		}
+
+		return view('cashDesk.close',compact('cashDesk','sumCredit','sumCash','sumCreditCard'));
+	}
+
+	public function saveClose(Request $request){
+		$cashDesk = CashDesk::where('status','activa')->first();
+
+		$cashDesk->status = 'cerrada';
+
+		$cashDesk->user_id = $request->user()->id;
+
+		$cashDesk->save();
+
+		$data = [
+		'status'=>'activa',
+		'total'=>$request->input('total')
+		];
+
+		$new_cashDesk = new CashDesk($data);
+
+		$new_cashDesk->save();
+
+		$ruta = route('caja');
+
+		return response()->json(['respuesta'=>'Guardado','ruta'=>$ruta,'nueva'=>$new_cashDesk->id]);
 	}
 
 }
