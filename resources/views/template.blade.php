@@ -41,8 +41,9 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Caja <span class="caret"></span></a>
               <ul class="dropdown-menu">
-                <li><a href="{{route('caja')}}">Ver</a></li>
-                <li><a href="#">Cierre</a></li>
+                <li><a href="{{route('caja')}}">Ventas en espera</a></li>
+                <li><a href="{{route('emitidos-caja')}}">Ventas emitidas</a></li>
+                <li><a href="#">Cierre Caja</a></li>
               </ul>
             </li>
             <li><a href="">Reportes</a></li>

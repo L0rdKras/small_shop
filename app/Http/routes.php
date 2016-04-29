@@ -165,7 +165,10 @@ Route::group( ['middleware' => 'auth' ], function() {
 	/***Caja****/
 
 	Route::get('/caja',['as'=>'caja','uses'=>'CashDeskController@index']);
+	Route::get('caja/emitidos',['as'=>'emitidos-caja','uses'=>'CashDeskController@issued']);
 	Route::post('caja/save/detail',['as'=>'save-detail-caja','uses'=>'CashDeskController@saveDetail']);
 	Route::get('caja/pago/credito/{id}',['as'=>'pago-al-credito','uses'=>'CashDeskController@credit']);
 	Route::post('caja/save/credit/sale',['as'=>'save-credit-sale','uses'=>'CashDeskController@saveCredit']);
+
+	Route::get('caja/cierre',['as'=>'close-cash-desk','uses'=>'CashDeskController@close']);
 } );

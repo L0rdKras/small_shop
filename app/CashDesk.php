@@ -12,4 +12,8 @@ class CashDesk extends Model {
 		return $this->belongsTo('App\User');
 	}
 
+	public function DeskDetail(){
+		return $this->hasMany('App\DeskDetail');
+	}
+
 }

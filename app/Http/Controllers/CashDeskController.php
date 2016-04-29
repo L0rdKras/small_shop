@@ -208,4 +208,33 @@ class CashDeskController extends Controller {
         return response()->json($messages);
 	}
 
+	public function issued(){
+		$cashDesk = CashDesk::where('status','activa')->first();
+
+		return view('cashDesk.issued',compact('cashDesk'));
+	}
+
+	public function close(){
+		$cashDesk = CashDesk::where('status','activa')->first();
+
+		$efectivo = $cashDesk->DeskDetail->where('payment_method','Efectivo');
+		$credito = $cashDesk->DeskDetail->where('payment_method','Credito');
+
+		$sumCash = 0;
+
+		foreach ($efectivo as $venta) {
+			$sumCash+=$venta->Sale->total;
+		}
+
+		$sumCredit = 0;
+
+		foreach ($credito as $venta) {
+			$sumCredit+=$venta->Sale->total;
+		}
+
+		return $sumCash." ".$sumCredit;
+
+		return view('cashDesk.issued',compact('cashDesk'));
+	}
+
 }
