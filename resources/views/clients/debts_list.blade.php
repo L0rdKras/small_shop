@@ -19,6 +19,9 @@
 		            <thead>
 		              <tr>
 		                <th>N° Venta</th>
+		                <th>Documento</th>
+		                <th>Departamento</th>
+		                <th>Unidad</th>
 		                <th>Monto</th>
 		                <th>Estado</th>		                
 		              </tr>
@@ -27,6 +30,9 @@
 		              @foreach($client->debts as $debt)
 		              <tr data-id="{{$debt->id}}">
 		                <td>{{$debt->sale->id}}</td>
+		                <td>{{$debt->sale->DeskDetail->document_type}}-{{$debt->sale->DeskDetail->ticket}}</td>
+		                <td>{{$debt->sale->Debt->department}}</td>
+		                <td>{{$debt->sale->Debt->unit}}</td>
 		                <td>{{$debt->total}}</td>
 		                @if($debt->status == 'Pendiente')
 			                <td>

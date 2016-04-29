@@ -18,4 +18,12 @@ class Sale extends Model {
 		return $this->belongsTo('App\Client');
 	}
 
+	public function DeskDetail(){
+		return $this->hasOne('App\DeskDetail');
+	}
+
+	public function Debt(){
+		return $this->hasOne('App\Debt');
+	}
+
 }

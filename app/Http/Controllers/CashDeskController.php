@@ -161,7 +161,7 @@ class CashDeskController extends Controller {
 		'sale_id'=>'required',
 		'document_type'=>'required',
 		'ticket'=>'required|numeric',
-		'cash_desk_id'=>'required'
+		'cash_desk_id'=>'required',
 		];
 
 		$validation = \Validator::make($input,$rules);
@@ -189,7 +189,9 @@ class CashDeskController extends Controller {
 					'expiration'=>$today,
 					'total'=>$waiting->Sale->total,
 					'client_id'=>$request->input('client_id'),
-					'sale_id'=>$waiting->Sale->id
+					'sale_id'=>$waiting->Sale->id,
+					'department'=>$request->input('department'),
+					'unit'=>$request->input('unit')
 					);
 
 				$debt = new Debt($data_deuda);

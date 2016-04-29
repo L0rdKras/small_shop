@@ -18,6 +18,8 @@ class CreateDebtsTable extends Migration {
 			$table->date('expiration');
 			$table->enum('status',['Pendiente','Pagada'])->default("Pendiente");
 			$table->integer('total');
+			$table->string('department');
+			$table->string('unit');
 			$table->integer('client_id')->unsigned();
 			$table->integer('sale_id')->unsigned();
 			$table->timestamps();

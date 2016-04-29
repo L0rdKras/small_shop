@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>MiTiendaWAPP</title>
+	<title>Tienda Universitaria UCN: Sede Coquimbo</title>
 
 	<link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('bootstrap/css/bootstrap-theme.css') }}" rel="stylesheet">
@@ -21,7 +21,7 @@
 	<![endif]-->
 </head>
 <body role="document">
-	<nav class="navbar navbar-inverse navbar-fixed-top">
+	<nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -30,7 +30,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">MiTiendaWAPP</a>
+          <a class="navbar-brand" href="#">Tienda Universitaria UCN: Sede Coquimbo</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">

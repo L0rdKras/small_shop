@@ -45,6 +45,14 @@
 			{!! Form::label('ticket', 'Numero Documento',array('class' => 'label label-default col-md-4')); !!}
 			{!! Form::text('ticket',null,array('id'=>'ticket', 'class'=>'col-md-4')); !!}
 		</h4>
+		<h4 class="row">
+			{!! Form::label('department', 'Departamento',array('class' => 'label label-default col-md-4')); !!}
+			{!! Form::text('department',null,array('id'=>'department', 'class'=>'col-md-4')); !!}
+      	</h4>
+      	<h4 class="row">
+			{!! Form::label('unit', 'Unidad',array('class' => 'label label-default col-md-4')); !!}
+			{!! Form::text('unit',null,array('id'=>'unit', 'class'=>'col-md-4')); !!}
+		</h4>
 		<h4>
 			{!! Form::submit('Confirmar',array('id'=>'btn-confirmar','class'=>'btn btn-success'))!!}
 		</h4>

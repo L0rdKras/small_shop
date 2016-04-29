@@ -6,7 +6,7 @@ class Debt extends Model {
 
 	protected $table = 'debts';
 
-	protected $fillable = ['expiration','total','client_id','sale_id'];
+	protected $fillable = ['expiration','total','client_id','sale_id','deparment','unit'];
 
 	public function client()
 	{

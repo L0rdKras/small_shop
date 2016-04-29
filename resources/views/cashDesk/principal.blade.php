@@ -66,7 +66,7 @@
       	</h4>
       	<h4 class="row">
 			{!! Form::label('payment_method', 'Medio de Pago',array('class' => 'label label-default col-md-4')); !!}
-			{!! Form::select('payment_method',array(''=>'','Efectivo'=>'Efectivo','Tarjeta'=>'Tarjeta','Tac'=>'Tac'),null,array('id'=>'payment_method', 'class'=>'col-md-4')); !!}
+			{!! Form::select('payment_method',array(''=>'','Efectivo'=>'Efectivo','Tarjeta'=>'Tarjeta','Credito'=>'Credito'),null,array('id'=>'payment_method', 'class'=>'col-md-4')); !!}
       	</h4>
       </div>
       <div class="modal-footer">
