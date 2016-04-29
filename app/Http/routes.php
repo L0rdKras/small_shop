@@ -156,6 +156,8 @@ Route::group( ['middleware' => 'auth' ], function() {
 
 	Route::get('/clientes/pagar/deudas/{id}',['as'=>'pagar_deuda','uses'=>'ClientController@pay_debt']);
 
+	Route::get('client/data/{id}',['as'=>'client-data','uses'=>'ClientController@client_data']);
+
 	/***********************Impresiones******************************/
 
 	Route::get('/impresion/venta/{id}',['as'=>'imp_venta','uses'=>'PdfController@sale']);	
@@ -163,4 +165,7 @@ Route::group( ['middleware' => 'auth' ], function() {
 	/***Caja****/
 
 	Route::get('/caja',['as'=>'caja','uses'=>'CashDeskController@index']);
-} );Route::post('caja/save/detail',['as'=>'save-detail-caja','uses'=>'CashDeskController@saveDetail']);
+	Route::post('caja/save/detail',['as'=>'save-detail-caja','uses'=>'CashDeskController@saveDetail']);
+	Route::get('caja/pago/credito/{id}',['as'=>'pago-al-credito','uses'=>'CashDeskController@credit']);
+	Route::post('caja/save/credit/sale',['as'=>'save-credit-sale','uses'=>'CashDeskController@saveCredit']);
+} );

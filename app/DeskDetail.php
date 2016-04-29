@@ -6,7 +6,7 @@ class DeskDetail extends Model {
 
 	protected $table = 'desk_details';
 
-	protected $fillable = ['paymenth_method','sale_id','cash_desk_id'];
+	protected $fillable = ['payment_method','sale_id','cash_desk_id','document_type','ticket'];
 
 	public function CashDesk(){
 		return $this->belongsTo('App\CashDesk');

@@ -15,7 +15,7 @@ class CreateDeskDetailsTable extends Migration {
 		Schema::create('desk_details', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('paymenth_method');
+			$table->string('payment_method');
 			$table->string('document_type');
 			$table->integer('ticket');
 			$table->integer('sale_id')->unsigned();

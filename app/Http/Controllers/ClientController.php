@@ -127,4 +127,11 @@ class ClientController extends Controller {
 		return view('clients.debts_list',compact('client'));
 	}
 
+	public function client_data($id)
+	{
+		$client = Client::find($id);
+
+		return response()->json($client);
+	}
+
 }

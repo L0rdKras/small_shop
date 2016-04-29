@@ -50,14 +50,15 @@
       {!! Form::open(array('route' => ['save-detail-caja'],'id'=>'formSaveSale','method'=>'POST')) !!}
       {!! Form::hidden('sale_id',null,array('id'=>'sale_id'))!!}
 	  {!! Form::hidden('waiting_id',null,array('id'=>'waiting_id'))!!}
+	  {!! Form::hidden('rutaCredito',route('pago-al-credito',':ID'),array('id'=>'rutaCredito'))!!}
       <div class="modal-body">
       	<h4 class="row">
       		<label for="" class="label label-default col-md-4">Total Venta</label>
       		<span class="col-md-4" id="totalPorPagar"></span>
       	</h4>
       	<h4 class="row">
-			{!! Form::label('documento_type', 'Documento',array('class' => 'label label-default col-md-4')); !!}
-			{!! Form::select('documento_type',array('Boleta'=>'Boleta','Factura'=>'Factura'),'Boleta',array('id'=>'documento_type', 'class'=>'col-md-4')); !!}
+			{!! Form::label('document_type', 'Documento',array('class' => 'label label-default col-md-4')); !!}
+			{!! Form::select('document_type',array('Boleta'=>'Boleta','Factura'=>'Factura'),'Boleta',array('id'=>'document_type', 'class'=>'col-md-4')); !!}
       	</h4>
       	<h4 class="row">
 			{!! Form::label('ticket', 'Numero Documento',array('class' => 'label label-default col-md-4')); !!}

@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\WaitingRoom;
+use App\CashDesk;
+use App\DeskDetail;
+use App\Client;
+use App\Debt;
 
 class CashDeskController extends Controller {
 
@@ -91,9 +95,117 @@ class CashDeskController extends Controller {
 		//
 	}
 
-	public function saveDetail()
+	public function saveDetail(Request $request)
 	{
-		//
+		$cashDesk = CashDesk::where('status','activa')->first();
+
+		$input = $request->only(['payment_method','sale_id','document_type','ticket']);
+
+		$input['cash_desk_id'] = $cashDesk->id;
+
+		$rules = [
+		'payment_method'=>'required',
+		'sale_id'=>'required',
+		'document_type'=>'required',
+		'ticket'=>'required|numeric',
+		'cash_desk_id'=>'required'
+		];
+
+		$validation = \Validator::make($input,$rules);
+
+		if($validation->passes())
+		{
+			$detail = new DeskDetail($input);
+
+			$detail->save();
+
+			//$id_waiting = ;
+
+			$waiting = WaitingRoom::find($request->input('waiting_id'));
+
+			$waiting->status = 'Pagado';
+
+			$waiting->save();
+
+			return response()->json(['respuesta'=>'Guardado','numero'=>$detail->id,'espera'=>$request->input('waiting_id')]);
+		}
+
+		$messages = $validation->errors();
+
+        return response()->json($messages);
+	}
+
+	public function credit($id){
+		$waiting = WaitingRoom::find($id);
+
+		if($waiting->status=="Pendiente"){
+			
+			$clients = Client::orderBy('name')->get();
+
+			return view('cashDesk.credit',compact('waiting','clients'));
+		}
+
+		return redirect()->route('caja');
+
+	}
+
+	public function saveCredit(Request $request){
+		$cashDesk = CashDesk::where('status','activa')->first();
+
+		$input = $request->only(['payment_method','sale_id','document_type','ticket']);
+
+		$input['cash_desk_id'] = $cashDesk->id;
+
+		$rules = [
+		'payment_method'=>'required',
+		'sale_id'=>'required',
+		'document_type'=>'required',
+		'ticket'=>'required|numeric',
+		'cash_desk_id'=>'required'
+		];
+
+		$validation = \Validator::make($input,$rules);
+
+		if($validation->passes())
+		{
+			if(!empty($request->input('client_id'))){
+				//
+				$detail = new DeskDetail($input);
+
+				$detail->save();
+
+				//$id_waiting = ;
+
+				$waiting = WaitingRoom::find($request->input('waiting_id'));
+
+				$waiting->status = 'Pagado';
+
+				$waiting->save();
+
+				//deuda
+				$today = date("Y-m-d");
+
+				$data_deuda = array(
+					'expiration'=>$today,
+					'total'=>$waiting->Sale->total,
+					'client_id'=>$request->input('client_id'),
+					'sale_id'=>$waiting->Sale->id
+					);
+
+				$debt = new Debt($data_deuda);
+
+				$debt->save();
+				//
+
+				return response()->json(['respuesta'=>'Guardado','numero'=>$detail->id,'espera'=>$request->input('waiting_id'),'ruta'=>route('caja')]);
+			}else{
+				return response()->json(['respuesta'=>'Error','mensaje'=>'No se indico el cliente']);
+			}
+		}
+
+		$messages = $validation->errors();
+
+        return response()->json($messages);
 	}
 
 }
