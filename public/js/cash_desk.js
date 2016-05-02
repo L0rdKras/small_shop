@@ -2,6 +2,8 @@ $(document).ready(function() {
 
     pagar();
 
+    anularPago();
+
     confirmaPago();
 });
 
@@ -25,6 +27,31 @@ var pagar = function(){
 			$("#ticket").val("");
 			$("#modal-pagar").modal();
 		});
+
+	});
+};
+
+var anularPago = function(){
+	$(".btn-anula").on("click",function(event){
+		event.preventDefault();
+
+		var id = $(this).data('id');
+
+		if(confirm("Anular la orden de venta implica devolver los stock de los articulos al sistema")){
+			var form = $("#formAnnul");
+
+			var data = form.serialize();
+
+			var url = form.attr('action');
+
+			url = url.replace(':ID',id);
+
+			$.post(url,data,function(response){
+				if(response==="Anulado"){
+					location.reload();
+				}
+			});
+		}
 
 	});
 };

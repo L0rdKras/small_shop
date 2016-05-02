@@ -265,4 +265,28 @@ class CashDeskController extends Controller {
 		return response()->json(['respuesta'=>'Guardado','ruta'=>$ruta,'nueva'=>$new_cashDesk->id]);
 	}
 
+	public function annul(Request $request,$id){
+		
+		$waiting = WaitingRoom::find($id);
+
+		$sale = $waiting->Sale;
+
+
+		foreach ($sale->saledetails as $detail) {
+			$articulo = $detail->article;
+
+			$articulo->modificar_stock('+',$detail->quantity);
+
+			$articulo->save();
+		}
+
+		$sale->status="Nula";
+
+		$sale->save();
+
+		$waiting->delete();
+
+		return "Anulado";
+	}
+
 }
