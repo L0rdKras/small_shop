@@ -39,9 +39,7 @@
             <li><a href="{{route('compras')}}">Compras</a></li>
             <li><a href="{{route('ventas')}}">Ventas</a></li>
             <?php
-            if (Auth::guest()){
-              //
-            }else{
+            if (!Auth::guest()){
               ?><li><a href="../auth/logout">Logout</a></li><?php
             }
 
