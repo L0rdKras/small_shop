@@ -15,7 +15,7 @@ var pagar = function(){
 
 		var ruta = $('#ruta-data-venta').val();
 
-		var ruta = ruta.replace(':ID',id);
+		ruta = ruta.replace(':ID',id);
 
 		$.getJSON(ruta,function(response){
 			//console.log(response);
@@ -70,7 +70,7 @@ var confirmaPago = function(){
 
 		if(payment_method !='Credito'){
 			$.post(url,data,function(response){
-				if(response.respuesta!=undefined){
+				if(response.respuesta!==undefined){
 					//paso
 					if(response.respuesta === "Guardado"){
 						alert("Registro de venta guardado");

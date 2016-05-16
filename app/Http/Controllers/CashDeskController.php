@@ -97,6 +97,7 @@ class CashDeskController extends Controller {
 
 	public function saveDetail(Request $request)
 	{
+
 		$cashDesk = CashDesk::where('status','activa')->first();
 
 		$input = $request->only(['payment_method','sale_id','document_type','ticket']);
@@ -139,7 +140,7 @@ class CashDeskController extends Controller {
 		$waiting = WaitingRoom::find($id);
 
 		if($waiting->status=="Pendiente"){
-			
+
 			$clients = Client::orderBy('name')->get();
 
 			return view('cashDesk.credit',compact('waiting','clients'));
@@ -266,7 +267,7 @@ class CashDeskController extends Controller {
 	}
 
 	public function annul(Request $request,$id){
-		
+
 		$waiting = WaitingRoom::find($id);
 
 		$sale = $waiting->Sale;
