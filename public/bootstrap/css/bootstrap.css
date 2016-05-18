@@ -11,6 +11,7 @@ html {
 }
 body {
   margin: 0;
+  background-color: rgb(177, 191, 214);
 }
 article,
 aside,
@@ -4032,6 +4033,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   position: relative;
   display: block;
   padding: 10px 15px;
+  background-color: rgba(202, 127, 52, 0.5);
+  color: black;
 }
 .nav > li > a:hover,
 .nav > li > a:focus {

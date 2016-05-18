@@ -6,9 +6,10 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Tienda Universitaria UCN: Sede Coquimbo</title>
 
-	<link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('bootstrap/css/bootstrap.css') }}" rel="stylesheet">
 	<link href="{{ asset('bootstrap/css/bootstrap-theme.css') }}" rel="stylesheet">
 	<link href="{{ asset('bootstrap/css/theme.css') }}" rel="stylesheet">
+	<link rel="stylesheet" href="/css/ucn.css" media="screen" title="no title" charset="utf-8">
 
 	<!-- Fonts -->
 	<link href='//fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
@@ -21,7 +22,7 @@
 	<![endif]-->
 </head>
 <body role="document">
-	<nav class="navbar navbar-default navbar-fixed-top">
+	<nav class="navbar color-panel navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -30,7 +31,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Tienda Universitaria UCN: Sede Coquimbo</a>
+          <a class="navbar-brand" href="/">
+						<img src="{{asset('images/ucn-logo-shield.png')}}" alt="" style="height:100%; float:left;"/>
+						Tienda Universitaria UCN: Sede Coquimbo
+					</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -76,7 +80,7 @@
 
 	<!-- Scripts -->
 	<!--<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>-->
-	
+
   <script src="{{ asset('js/jquery-2.1.4.js')}}"></script>
   <script src="{{ asset('bootstrap/js/bootstrap.js')}}"></script>
   <script src="{{ asset('js/rut.js')}}"></script>

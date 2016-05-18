@@ -3,7 +3,10 @@
 @section('content')
 <div class="container theme-showcase" role="main">
 	<div class="jumbotron">
-        <h1>Sistema Tienda</h1>
+		<img src="{{asset('images/ucn-logo-shield.png'}}" style="float:left; vertical-align:top; height:70%;" alt="" />
+        <h1>
+					Sistema Tienda Universitaria
+				</h1>
         <p>Administracion de ventas</p>
     </div>
 
