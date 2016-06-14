@@ -28,9 +28,9 @@ Route::post('auth/login', 'Auth\AuthController@postLogin');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
-Route::group( ['middleware' => 'auth' ], function() { 
+Route::group( ['middleware' => 'auth' ], function() {
 	Route::get('auth/logout', 'Auth\AuthController@getLogout');
-	//Rutas a proteger... 
+	//Rutas a proteger...
 	Route::get('/', 'WelcomeController@index');
 
 	Route::get('/articulos', ['as'=>'articulos', 'uses' => 'ArticlesController@index']);
@@ -160,7 +160,8 @@ Route::group( ['middleware' => 'auth' ], function() {
 
 	/***********************Impresiones******************************/
 
-	Route::get('/impresion/venta/{id}',['as'=>'imp_venta','uses'=>'PdfController@sale']);	
+	Route::get('/impresion/venta/{id}',['as'=>'imp_venta','uses'=>'PdfController@sale']);
+	Route::get('/impresion/venta/caja/{id}',['as'=>'imp_venta_caja','uses'=>'PdfController@saleDesk']);
 
 	/***Caja****/
 

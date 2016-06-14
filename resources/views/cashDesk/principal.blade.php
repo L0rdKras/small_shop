@@ -2,6 +2,7 @@
 
 @section('content')
 <input type="hidden" id="ruta-data-venta" value="{{route('data-sale',':ID')}}">
+<input type="hidden" id="ruta-imp-venta" value="{{route('imp_venta_caja',':ID')}}">
 {!! Form::open(array('route' => ['annul-sale',':ID'],'id'=>'formAnnul','method'=>'POST')) !!}
 {!! Form::close() !!}
 <div class="container theme-showcase" role="main">

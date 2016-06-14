@@ -73,7 +73,11 @@ var confirmaPago = function(){
 				if(response.respuesta!==undefined){
 					//paso
 					if(response.respuesta === "Guardado"){
+            var rutaImpresion = $("#ruta-imp-venta").val();
+            rutaImpresion = rutaImpresion.replace(':ID',response.numero);
 						alert("Registro de venta guardado");
+            //abrir pdf venta
+            window.open(rutaImpresion);
 						$("#modal-pagar").modal('hide');
 						$("#wait_"+response.espera).fadeOut();
 					}else{
