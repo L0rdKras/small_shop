@@ -37,10 +37,13 @@ var confirmPay = function(){
 		var url = form.attr('action');
 
 		$.post(url,data,function(response){
-			if(response.respuesta!=undefined){
+			if(response.respuesta!==undefined){
 				//paso
 				if(response.respuesta === "Guardado"){
+          var rutaImpresion = $("#ruta-imp-venta").val();
+          rutaImpresion = rutaImpresion.replace(':ID',response.numero);
 					alert("Registro de venta guardado");
+          window.open(rutaImpresion);
 					//redireccionar caja
 					location.href=response.ruta;
 				}else{
@@ -54,6 +57,6 @@ var confirmPay = function(){
 		},'json').fail(function(){
 			alert("Ocurrio un error al intentar guardar la informacion");
 		});
-		
+
 	});
 };

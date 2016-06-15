@@ -3,6 +3,7 @@
 @section('content')
 <input type="hidden" id="ruta-data-venta" value="{{route('data-sale',':ID')}}">
 <input type="hidden" id="ruta-client-data" value="{{route('client-data',':ID')}}">
+<input type="hidden" id="ruta-imp-venta" value="{{route('imp_venta_caja',':ID')}}">
 <div class="container theme-showcase" role="main">
 	<div class="panel panel-default">
 		<div class="panel-heading">
